@@ -25,9 +25,10 @@ Status: completed
 - [x] 启用 GitHub Pages。(`gh api repos/hou-152/personal-homepage/pages`, result: `build_type=workflow`)
 - [x] 验证线上页面。(`https://hou-152.github.io/personal-homepage/`, browser check: headline, GitHub, Gmail, WeChat visible; no "待补充")
 - [x] 同步 AGENTS 和部署记录。(`AGENTS.md:87`, `iterations/v2-deploy/.plan/plan.md:1`)
+- [x] 配置 GitHub Actions 使用 Node 24 action runtime。(`.github/workflows/deploy.yml:15`)
 
 ## Notes
 
 - 本轮会把当前项目推送到公开 GitHub 仓库。
 - 本轮不发送消息，不填写第三方表单，不上传项目之外的本地文件。
-- GitHub Actions 首次部署成功，run id `26688381646`。
+- GitHub Actions 首次部署成功，run id `26688381646`；后续记录更新部署成功，run id `26688422689`。
