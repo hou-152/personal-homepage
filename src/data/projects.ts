@@ -1,0 +1,38 @@
+export const projects = [
+  {
+    title: "个人主页",
+    summary: "用 SpecDrivenCoding 做出的个人展示网站。",
+    role: "从 Brief、PRD、DESIGN、ARCHITECTURE 到可构建页面，完整推进第一版 MVP。",
+    proves: ["结构化表达", "AI 协作", "页面开发", "可发布 MVP"],
+    demoUrl: "#top",
+    githubUrl: "https://github.com/hou-152",
+    status: "ready",
+  },
+  {
+    title: "成长热力图",
+    summary: "把持续构建记录做成可视化证据。",
+    role: "设计 Build Log 数据结构，用热力图表达持续行动，而不是日记打卡。",
+    proves: ["长期迭代", "信息筛选", "可视化表达", "行动记录"],
+    demoUrl: "#build-log",
+    githubUrl: "",
+    status: "ready",
+  },
+  {
+    title: "First Flight 基线",
+    summary: "把零散 spec 整理成可持续迭代的项目工作台。",
+    role: "补齐 AGENTS、CONTENT 和 v1 phase 记录，让后续 AI 能按同一套规则继续维护。",
+    proves: ["工作流设计", "文档治理", "长期维护"],
+    demoUrl: "#build-log",
+    githubUrl: "https://github.com/hou-152",
+    status: "ready",
+  },
+  {
+    title: "项目卡片系统",
+    summary: "把作品、Demo 和能力证据放到同一个展示单元。",
+    role: "用可复用组件展示项目价值，让普通访客先看懂结果，懂技术的人再继续验证。",
+    proves: ["组件化思维", "证据设计", "用户分层"],
+    demoUrl: "#projects",
+    githubUrl: "",
+    status: "ready",
+  },
+];
