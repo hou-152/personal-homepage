@@ -1,6 +1,6 @@
 # Phase 01 · github-pages-deploy
 
-Status: in progress
+Status: completed
 
 ## 目标
 
@@ -20,13 +20,14 @@ Status: in progress
 - [x] 配置 Vite GitHub Pages base path。(`vite.config.ts:4`)
 - [x] 增加 GitHub Pages Actions workflow。(`.github/workflows/deploy.yml:1`)
 - [x] 本地构建通过。(`npm run build`, result: built in 2.11s; `GITHUB_PAGES=true npm run build`, result: built in 2.12s)
-- [ ] 初始化 Git 仓库并提交。
-- [ ] 创建公开 GitHub 仓库并推送。
-- [ ] 启用 GitHub Pages。
-- [ ] 验证线上页面。
-- [ ] 同步 AGENTS 和部署记录。
+- [x] 初始化 Git 仓库并提交。(`git commit`, commit `69fc706`)
+- [x] 创建公开 GitHub 仓库并推送。(`https://github.com/hou-152/personal-homepage`)
+- [x] 启用 GitHub Pages。(`gh api repos/hou-152/personal-homepage/pages`, result: `build_type=workflow`)
+- [x] 验证线上页面。(`https://hou-152.github.io/personal-homepage/`, browser check: headline, GitHub, Gmail, WeChat visible; no "待补充")
+- [x] 同步 AGENTS 和部署记录。(`AGENTS.md:87`, `iterations/v2-deploy/.plan/plan.md:1`)
 
 ## Notes
 
 - 本轮会把当前项目推送到公开 GitHub 仓库。
 - 本轮不发送消息，不填写第三方表单，不上传项目之外的本地文件。
+- GitHub Actions 首次部署成功，run id `26688381646`。

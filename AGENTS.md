@@ -88,6 +88,8 @@ npm run preview
 
 - 2026-05-30 已复查 `npm run build`，构建通过，最近一次 Vite 构建耗时约 4.51 秒。
 - `src/data/links.ts` 中 GitHub、Gmail、电话和微信号已连接为真实联系方式。
+- GitHub 仓库：[hou-152/personal-homepage](https://github.com/hou-152/personal-homepage)
+- 线上地址：[https://hou-152.github.io/personal-homepage/](https://hou-152.github.io/personal-homepage/)
 - 现有截图位于 `screenshots/`，最近一次桌面和移动端截图已在 v1 验收修整后更新。
 
 ## Spec Sync
