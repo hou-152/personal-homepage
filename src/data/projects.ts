@@ -1,3 +1,15 @@
+export const featuredProject = {
+  eyebrow: "Featured Work",
+  title: "《serious AI 内参》",
+  summary: "把 AI 信息变成判断，把判断推进成行动。",
+  problem: "AI 信息太多，团队很难判断什么值得看、为什么重要、下一步该做什么。",
+  action: "我把 RSS 信息源、人工筛选、日报生成、评论入库和深度拆解串成一条稳定流程。",
+  proof: "一批可复盘、可交付、可继续使用的内参素材和判断线索。",
+  steps: ["信息接入", "人工筛选", "日报生成", "评论入库", "深度拆解", "判断行动"],
+  demoUrl: "#ai-neican-demo",
+  logUrl: "#build-log",
+};
+
 export const projects = [
   {
     title: "个人主页",
@@ -23,12 +35,12 @@ export const projects = [
   },
   {
     title: "AI 内参编辑流水线",
-    summary: "把阅读、入库、笔记和编辑连成每日流程。",
-    problem: "大量阅读如果没有流程，很快就变成一次性浏览。",
-    action: "我搭建日报、入库、回填、笔记和概念提取顺序。",
-    proof: "能把内容生产做成可复用、可质检的工作流。",
-    proves: ["知识生产", "流程治理", "质量控制"],
-    demoUrl: "#workbench",
+    summary: "把 AI 信息变成判断，把判断推进成行动。",
+    problem: "团队每天面对大量 AI 信息，但很难判断什么值得看、为什么重要、下一步做什么。",
+    action: "我搭建信息接入、人工筛选、日报生成、评论入库和深度拆解流程。",
+    proof: "能把 AI 信息压力转成可复盘、可交付、可行动的判断链路。",
+    proves: ["AI 内参", "判断链路", "Agent 协作"],
+    demoUrl: "#ai-neican-demo",
     githubUrl: "",
     status: "ready",
   },

@@ -83,4 +83,28 @@ export const buildLog = [
     title: "重写项目证据卡片",
     description: "每个项目都回答问题、我做了什么、它证明什么，让作品服务成长叙事。",
   },
+  {
+    date: "2026-06-01",
+    type: "code",
+    title: "新增 AI 内参信息流 Demo",
+    description: "用可播放的六步演示展示从 AI 信息接入到判断和行动的真实流程。",
+  },
+  {
+    date: "2026-06-01",
+    type: "code",
+    title: "新增 AI 内参证据页",
+    description: "把 Feed、阅读库、日报、笔记、概念和判断简报整理成独立站内证据页。",
+  },
+  {
+    date: "2026-06-01",
+    type: "update",
+    title: "重写首页品牌入口",
+    description: "把门牌从 SpecDriven 调整为侯斯博 / Da Capo，并将首屏聚焦到 AI 内参 Demo。",
+  },
+  {
+    date: "2026-06-01",
+    type: "code",
+    title: "升级 Build Log 节奏图",
+    description: "参考 GitHub contribution 的结构，用构建热力图展示持续推进，而不是普通日志列表。",
+  },
 ];

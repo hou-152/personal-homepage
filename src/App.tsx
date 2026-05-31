@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ArrowDown from "lucide-react/dist/esm/icons/arrow-down";
 import ArrowUpRight from "lucide-react/dist/esm/icons/arrow-up-right";
 import Blocks from "lucide-react/dist/esm/icons/blocks";
@@ -7,23 +8,29 @@ import Flame from "lucide-react/dist/esm/icons/flame";
 import Github from "lucide-react/dist/esm/icons/github";
 import Globe from "lucide-react/dist/esm/icons/globe";
 import Mail from "lucide-react/dist/esm/icons/mail";
-import Map from "lucide-react/dist/esm/icons/map";
+import MapIcon from "lucide-react/dist/esm/icons/map";
 import MessageCircle from "lucide-react/dist/esm/icons/message-circle";
+import Pause from "lucide-react/dist/esm/icons/pause";
 import Phone from "lucide-react/dist/esm/icons/phone";
+import Play from "lucide-react/dist/esm/icons/play";
 import Rocket from "lucide-react/dist/esm/icons/rocket";
+import Send from "lucide-react/dist/esm/icons/send";
 import Sparkles from "lucide-react/dist/esm/icons/sparkles";
 import { profile } from "./data/profile";
 import { growth } from "./data/growth";
-import { projects } from "./data/projects";
+import { featuredProject, projects } from "./data/projects";
 import { abilities } from "./data/abilities";
 import { buildLog } from "./data/build-log";
 import { links } from "./data/links";
 import { workbenchGroups } from "./data/workbench";
+import { aiNeicanDemoSteps } from "./data/ai-neican-demo";
+import { aiNeicanCaseEvidence } from "./data/ai-neican-case";
 
 const navItems = [
   { label: "我是谁", href: "#identity" },
   { label: "作品线", href: "#growth" },
   { label: "项目", href: "#projects" },
+  { label: "AI 内参", href: "#/ai-neican-case" },
   { label: "方法", href: "#workbench" },
   { label: "能力", href: "#abilities" },
   { label: "Build Log", href: "#build-log" },
@@ -38,22 +45,124 @@ const typeClass: Record<string, string> = {
   update: "heat-update",
 };
 
+type BuildLogItem = (typeof buildLog)[number];
+
+type BuildActivityCell = {
+  date: string;
+  count: number;
+  level: number;
+  titles: string[];
+};
+
+type Page = "home" | "ai-neican-case";
+
+const getCurrentPage = (): Page =>
+  window.location.hash.startsWith("#/ai-neican-case") ? "ai-neican-case" : "home";
+
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
+const getBuildActivityCells = (items: BuildLogItem[]) => {
+  const grouped = new Map<string, BuildLogItem[]>();
+
+  items.forEach((item) => {
+    grouped.set(item.date, [...(grouped.get(item.date) ?? []), item]);
+  });
+
+  const latestDate = items.reduce((latest, item) => {
+    const current = new Date(`${item.date}T00:00:00`);
+    return current > latest ? current : latest;
+  }, new Date(`${items[0]?.date ?? "2026-05-30"}T00:00:00`));
+
+  const startDate = new Date(latestDate);
+  startDate.setDate(latestDate.getDate() - 7 * 18 + 1);
+  startDate.setDate(startDate.getDate() - startDate.getDay());
+
+  return Array.from({ length: 7 * 18 }, (_, index): BuildActivityCell => {
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + index);
+    const key = formatDate(date);
+    const dayItems = grouped.get(key) ?? [];
+    const count = dayItems.length;
+
+    return {
+      date: key,
+      count,
+      level: Math.min(count, 4),
+      titles: dayItems.map((item) => item.title),
+    };
+  });
+};
+
 function App() {
+  const [page, setPage] = useState<Page>(getCurrentPage);
+
+  useEffect(() => {
+    const scrollToHash = (behavior: ScrollBehavior) => {
+      const id = window.location.hash.slice(1);
+
+      if (!id || id.startsWith("/")) {
+        return;
+      }
+
+      document.getElementById(decodeURIComponent(id))?.scrollIntoView({
+        behavior,
+        block: "start",
+      });
+    };
+
+    const syncLocation = (behavior: ScrollBehavior) => {
+      const nextPage = getCurrentPage();
+      setPage(nextPage);
+
+      window.setTimeout(() => {
+        if (nextPage === "home") {
+          scrollToHash(behavior);
+          return;
+        }
+
+        window.scrollTo({ top: 0, behavior });
+      }, 0);
+    };
+
+    const timer = window.setTimeout(() => syncLocation("auto"), 80);
+    const handleHashChange = () => syncLocation("smooth");
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
     <div className="site-shell" id="top">
       <Header />
-      <main>
-        <Hero />
-        <Identity />
-        <GrowthTimeline />
-        <Projects />
-        <Workbench />
-        <AbilityMap />
-        <BuildHeatmap />
-        <Changelog />
-        <Contact />
-      </main>
+      <main>{page === "ai-neican-case" ? <AiNeicanCasePage /> : <HomePage />}</main>
     </div>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <Identity />
+      <GrowthTimeline />
+      <Projects />
+      <AiNeicanDemo />
+      <Workbench />
+      <AbilityMap />
+      <BuildHeatmap />
+      <Changelog />
+      <Contact />
+    </>
   );
 }
 
@@ -61,8 +170,8 @@ function Header() {
   return (
     <header className="site-header" aria-label="主导航">
       <a className="brand" href="#top" aria-label="回到首页">
-        <span className="brand-mark">S</span>
-        <span>SpecDriven</span>
+        <span className="brand-mark">{profile.brandMark}</span>
+        <span>{profile.brand}</span>
       </a>
       <nav>
         {navItems.map((item) => (
@@ -87,36 +196,37 @@ function Hero() {
         </h1>
         <p className="hero-subtitle">{profile.subtitle}</p>
         <div className="hero-actions">
-          <a className="primary-action" href="#projects">
-            看项目证据
+          <a className="primary-action" href="#ai-neican-demo">
+            看 AI 内参 Demo
             <ArrowDown size={18} aria-hidden="true" />
           </a>
-          <a className="secondary-action" href="#build-log">
-            看构建轨迹
+          <a className="secondary-action" href="#/ai-neican-case">
+            看完整证据链
+            <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
       </div>
-      <div className="hero-visual" aria-label="SpecDrivenCoding 流程视觉图">
+      <div className="hero-visual" aria-label="AI 内参信息流视觉图">
         <div className="flow-card active">
           <span>01</span>
-          Notice
+          RSS
         </div>
         <div className="flow-card">
           <span>02</span>
-          Structure
+          Reader
         </div>
         <div className="flow-card">
           <span>03</span>
-          Build
+          Daily
         </div>
         <div className="flow-card strong">
           <span>04</span>
-          Show
+          Agent
         </div>
         <div className="trajectory-line" />
         <div className="signal-panel">
           <Sparkles size={20} aria-hidden="true" />
-          <p>把想法、结构、行动和结果连成一条成长证据链</p>
+          <p>把 RSS、阅读库、日报、笔记和 Agent 串成一个信息流 Demo</p>
         </div>
       </div>
     </section>
@@ -192,8 +302,57 @@ function Projects() {
     <section className="section-band projects-section" id="projects">
       <div className="section-heading">
         <p className="eyebrow">Projects</p>
-        <h2>项目不是主角，它们负责证明我做成了什么</h2>
+        <h2>先看一个重点案例，再看其他作品证据</h2>
       </div>
+      <article className="featured-project-card">
+        <div className="featured-project-copy">
+          <p className="eyebrow">{featuredProject.eyebrow}</p>
+          <h3>{featuredProject.title}</h3>
+          <p className="featured-project-summary">{featuredProject.summary}</p>
+          <div className="featured-evidence">
+            <p>
+              <span>它解决什么</span>
+              {featuredProject.problem}
+            </p>
+            <p>
+              <span>我怎么做</span>
+              {featuredProject.action}
+            </p>
+            <p>
+              <span>沉淀什么</span>
+              {featuredProject.proof}
+            </p>
+          </div>
+          <div className="featured-actions">
+            <a href={featuredProject.demoUrl}>
+              看信息流 Demo
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a href={featuredProject.logUrl}>
+              看构建记录
+              <Flame size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="featured-project-preview" aria-label="AI 内参信息流缩略图">
+          <div className="preview-title">
+            <span>serious AI 内参</span>
+            <strong>判断链路</strong>
+          </div>
+          <div className="preview-flow">
+            {featuredProject.steps.map((step, index) => (
+              <div className={index === 4 ? "preview-node active" : "preview-node"} key={step}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {step}
+              </div>
+            ))}
+          </div>
+          <div className="preview-output">
+            <strong>输出</strong>
+            <p>当日内参素材 / 文章结构 / 核心概念 / 下一步判断</p>
+          </div>
+        </div>
+      </article>
       <div className="project-grid">
         {projects.map((project) => (
           <article className="project-card" key={project.title}>
@@ -243,6 +402,223 @@ function Projects() {
   );
 }
 
+function AiNeicanDemo() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const activeStep = aiNeicanDemoSteps[activeIndex];
+
+  useEffect(() => {
+    if (!isPlaying) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => {
+        if (current >= aiNeicanDemoSteps.length - 1) {
+          setIsPlaying(false);
+          return current;
+        }
+
+        return current + 1;
+      });
+    }, 1700);
+
+    return () => window.clearInterval(timer);
+  }, [isPlaying]);
+
+  const selectStep = (index: number) => {
+    setActiveIndex(index);
+    setIsPlaying(false);
+  };
+
+  const togglePlayback = () => {
+    if (activeIndex === aiNeicanDemoSteps.length - 1) {
+      setActiveIndex(0);
+      setIsPlaying(true);
+      return;
+    }
+
+    setIsPlaying((current) => !current);
+  };
+
+  return (
+    <section className="section-band neican-demo-section" id="ai-neican-demo">
+      <div className="neican-demo-shell">
+        <div className="neican-demo-heading">
+          <p className="eyebrow">AI Neican Demo</p>
+          <a className="demo-case-link" href="#/ai-neican-case">
+            查看完整证据链
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+          <h2>把 AI 信息变成判断，把判断推进成行动</h2>
+          <p>
+            这是《AI 内参》背后的真实工作流：信息进入、人工筛选、Agent
+            生成日报、评论入库、深度拆解，最后沉淀成可以继续使用的判断材料。
+          </p>
+          <button className="demo-play-button" type="button" onClick={togglePlayback}>
+            {isPlaying ? <Pause size={18} aria-hidden="true" /> : <Play size={18} aria-hidden="true" />}
+            {isPlaying ? "暂停演示" : activeIndex === aiNeicanDemoSteps.length - 1 ? "重新播放" : "播放演示"}
+          </button>
+        </div>
+
+        <div className="neican-demo-stage">
+          <div className="demo-step-rail" aria-label="AI 内参信息流步骤">
+            {aiNeicanDemoSteps.map((step, index) => (
+              <button
+                className={index === activeIndex ? "demo-step-tab active" : "demo-step-tab"}
+                key={step.id}
+                type="button"
+                onClick={() => selectStep(index)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {step.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="demo-flow-grid">
+            <div className="demo-input-panel">
+              <span className="demo-panel-label">当前环节</span>
+              <h3>{activeStep.title}</h3>
+              <p>{activeStep.summary}</p>
+              <div className="demo-chip-list">
+                {activeStep.proof.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="demo-agent-panel">
+              <span className="demo-panel-label">Agent 做什么</span>
+              <div className="demo-agent-avatar">
+                <Sparkles size={24} aria-hidden="true" />
+                <strong>AI 编辑 Agent</strong>
+              </div>
+              <p>{activeStep.agentRole}</p>
+              <div className="demo-progress-track">
+                {aiNeicanDemoSteps.map((step, index) => (
+                  <span
+                    className={index <= activeIndex ? "filled" : ""}
+                    key={step.id}
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="demo-human-panel">
+              <span className="demo-panel-label">我负责什么</span>
+              <h3>判断不外包</h3>
+              <p>{activeStep.humanRole}</p>
+              <div className="demo-output-card">
+                <Send size={18} aria-hidden="true" />
+                <span>{activeStep.output}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="demo-final-proof">
+            <strong>本环节之后：</strong>
+            <span>{activeStep.next}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AiNeicanCasePage() {
+  const scrollToEvidence = (id: string) => {
+    document.getElementById(`ai-neican-case-${id}`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  return (
+    <div className="case-page" id="ai-neican-case">
+      <section className="section-band case-page-hero">
+        <div>
+          <p className="eyebrow">AI Neican Case</p>
+          <h1>一条 AI 信息，如何变成判断材料</h1>
+          <p>
+            这是《AI 内参》的完整证据链：外部信息进入系统，被筛选、整理、入库、拆解，最后变成可以复盘、转发和继续使用的判断材料。
+          </p>
+        </div>
+        <div className="case-page-actions">
+          <a className="primary-action" href="#top">
+            返回首页
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <a className="secondary-action" href="#ai-neican-demo">
+            看轻量 Demo
+          </a>
+        </div>
+      </section>
+
+      <section className="section-band neican-case-section">
+        <div className="case-flow-strip" aria-label="AI 内参完整证据链流程">
+          {aiNeicanCaseEvidence.map((item) => (
+            <button key={item.id} type="button" onClick={() => scrollToEvidence(item.id)}>
+              <span>{item.index}</span>
+              {item.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="case-evidence-list">
+          {aiNeicanCaseEvidence.map((item) => (
+            <article className="case-evidence-card" id={`ai-neican-case-${item.id}`} key={item.id}>
+              <div className="case-evidence-copy">
+                <span className="case-index">{item.index}</span>
+                <h3>{item.title}</h3>
+                <dl>
+                  <div>
+                    <dt>材料是什么</dt>
+                    <dd>{item.material}</dd>
+                  </div>
+                  <div>
+                    <dt>它证明什么</dt>
+                    <dd>{item.proves}</dd>
+                  </div>
+                  <div>
+                    <dt>链路位置</dt>
+                    <dd>{item.position}</dd>
+                  </div>
+                </dl>
+              </div>
+              <div className={`case-evidence-visual visual-${item.id}`} aria-label={`${item.title} 证据占位图`}>
+                <div className="case-window-bar">
+                  <span />
+                  <span />
+                  <span />
+                  <strong>{item.visualTitle}</strong>
+                </div>
+                <div className="case-visual-body">
+                  <p>{item.visualMeta}</p>
+                  <div className="case-visual-grid">
+                    {item.visualItems.map((visualItem) => (
+                      <span key={visualItem}>{visualItem}</span>
+                    ))}
+                  </div>
+                </div>
+                <small>待替换为脱敏真实截图</small>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="case-boundary-note">
+          <strong>边界</strong>
+          <p>
+            这个页面不是把《AI 内参》包装成独立产品官网，只证明一件事：我已经能把真实信息输入、人工判断、Agent 加工和知识沉淀串成一条可复盘的工作链路。
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function Workbench() {
   return (
     <section className="section-band workbench-section" id="workbench">
@@ -255,7 +631,7 @@ function Workbench() {
           <article className="workbench-card" key={group.name}>
             <div className="workbench-index">
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <Map size={20} aria-hidden="true" />
+              <MapIcon size={20} aria-hidden="true" />
             </div>
             <h3>{group.name}</h3>
             <p>{group.summary}</p>
@@ -298,23 +674,62 @@ function AbilityMap() {
 }
 
 function BuildHeatmap() {
+  const activityCells = getBuildActivityCells(buildLog);
+  const activeDays = new Set(buildLog.map((item) => item.date)).size;
   const proofStats = [
     { value: buildLog.length, label: "有效构建记录" },
-    { value: "4", label: "迭代阶段" },
-    { value: "2", label: "已上线证据" },
+    { value: "5", label: "迭代阶段" },
+    { value: activeDays, label: "活跃构建日" },
   ];
 
   return (
     <section className="section-band build-section" id="build-log">
       <div className="section-heading">
         <p className="eyebrow">Build Log</p>
-        <h2>构建节奏：证明我在持续推进</h2>
+        <h2>构建节奏：不是日记，是推进证据</h2>
       </div>
       <div className="heatmap-wrap">
         <div className="build-proof-panel">
+          <div className="build-proof-heading">
+            <div>
+              <p className="build-proof-kicker">Contribution rhythm</p>
+              <h3>GitHub-style 构建热力图</h3>
+            </div>
+            <a href={links.github} target="_blank" rel="noreferrer">
+              View GitHub
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+          </div>
           <p>
-            这里不放日记，只留下能证明推进的动作：写清楚、做出来、上线、复盘、再迭代。
+            这里不记录生活碎片，只留下能证明推进的动作：写清楚、做出来、上线、复盘、再迭代。
           </p>
+          <div className="contribution-map" aria-label="构建贡献热力图">
+            {activityCells.map((cell) => (
+              <button
+                className={`contribution-cell contribution-level-${cell.level}`}
+                key={cell.date}
+                title={
+                  cell.count > 0
+                    ? `${cell.date} · ${cell.count} 次构建：${cell.titles.join(" / ")}`
+                    : `${cell.date} · 无构建记录`
+                }
+                type="button"
+              >
+                <span className="sr-only">
+                  {cell.date}，{cell.count} 次构建
+                </span>
+              </button>
+            ))}
+          </div>
+          <div className="contribution-legend" aria-hidden="true">
+            <span>Less</span>
+            <i className="contribution-level-0" />
+            <i className="contribution-level-1" />
+            <i className="contribution-level-2" />
+            <i className="contribution-level-3" />
+            <i className="contribution-level-4" />
+            <span>More</span>
+          </div>
           <div className="build-proof-stats">
             {proofStats.map((stat) => (
               <div key={stat.label}>
@@ -323,23 +738,11 @@ function BuildHeatmap() {
               </div>
             ))}
           </div>
-          <div className="heatmap" aria-label="构建节奏图">
-            {buildLog.map((item, index) => (
-              <button
-                className={`heat-cell ${typeClass[item.type]}`}
-                key={`${item.date}-${item.title}`}
-                title={`${item.date} ${item.title}`}
-                type="button"
-              >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </button>
-            ))}
-          </div>
         </div>
         <div className="build-log-list">
           {buildLog.slice(-5).reverse().map((item) => (
             <article key={`${item.date}-${item.title}`}>
-              <span>{item.date}</span>
+              <span className={typeClass[item.type]}>{item.date}</span>
               <strong>{item.title}</strong>
               <p>{item.description}</p>
             </article>
@@ -420,7 +823,7 @@ function Contact() {
           </span>
         )}
           <a href="#growth" aria-label="看作品线" title="看作品线">
-            <Map size={21} aria-hidden="true" />
+            <MapIcon size={21} aria-hidden="true" />
           </a>
           <a href="#top" aria-label="个人主页" title="个人主页">
             <Globe size={21} aria-hidden="true" />
