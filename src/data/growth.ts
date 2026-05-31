@@ -1,30 +1,37 @@
 export const growth = [
   {
-    phase: "Brief",
-    title: "把模糊想法说清楚",
+    phase: "Concept",
+    title: "积累概念",
     description:
-      "先定义这个网站要给谁看、在什么场景下看、要让别人产生什么判断。",
-    ability: "目标定义",
+      "长期学习只有沉淀成概念、问题和判断，才不是一次性输入。",
+    ability: "领域理解",
   },
   {
-    phase: "PRD",
-    title: "把展示窗口变成产品需求",
+    phase: "Judgment",
+    title: "形成判断",
     description:
-      "明确用户场景、页面结构、项目展示、能力地图和长期成功标准。",
-    ability: "产品思维",
+      "从核心概念、项目经验和真实需求里，判断什么问题值得继续推进。",
+    ability: "问题选择",
   },
   {
-    phase: "DESIGN",
-    title: "把个人价值设计成浏览路径",
+    phase: "Structure",
+    title: "拆成结构",
     description:
-      "从第一眼的酷感，到项目证据，再到持续构建记录，让别人重新理解我。",
-    ability: "信息架构",
+      "用逆向拆解、高手流程、Brief / PRD / Design / Plan，把模糊判断变成可执行任务。",
+    ability: "结构化表达",
   },
   {
-    phase: "Build",
-    title: "把文档推进成可打开的网站",
+    phase: "Ship",
+    title: "推进交付",
     description:
-      "用轻量静态架构完成页面，实现手机优先、快速加载和可持续更新。",
-    ability: "执行推进",
+      "让 Agent 研究、生成和执行，我负责讨论、判断、拍板和验收，把结构推进成作品。",
+    ability: "人机协作",
+  },
+  {
+    phase: "Feedback",
+    title: "反馈复利",
+    description:
+      "让每一次交付被看见、被反馈、被复盘，再变成下一轮判断和迭代的材料。",
+    ability: "持续复利",
   },
 ];

@@ -82,15 +82,16 @@ npm run preview
 4. 影响长期定位的改动先讨论 BRIEF；影响视觉系统的改动同步 DESIGN；影响技术栈或依赖的改动同步 ARCHITECTURE。
 5. 复杂任务必须用 phase 管理，每个 phase 完成后停下来让用户验收。
 6. 用户已明确偏好：先研究，然后讨论；用户作为决策者确定方案，OK 之后再执行。
-7. 不要替用户 commit。本目录当前不是 git 仓库，不能假设有版本控制保护。
+7. 不要替用户 commit，除非用户明确要求；当前仓库已连接 GitHub Pages 自动部署。
 
 ## 当前项目状态
 
-- 2026-05-30 已复查 `npm run build`，构建通过，最近一次 Vite 构建耗时约 4.51 秒。
 - `src/data/links.ts` 中 GitHub、Gmail、电话和微信号已连接为真实联系方式。
 - GitHub 仓库：[hou-152/personal-homepage](https://github.com/hou-152/personal-homepage)
 - 线上地址：[https://hou-152.github.io/personal-homepage/](https://hou-152.github.io/personal-homepage/)
-- 现有截图位于 `screenshots/`，最近一次桌面和移动端截图已在 v1 验收修整后更新。
+- 2026-05-31 已完成 `v3-codex-project-map`：项目区升级为 7 张 Codex 项目卡片，并新增 Codex Workbench 地图区块。
+- 最近一次 `npm run build` 构建通过，Vite 构建耗时约 2.26 秒。
+- 现有截图位于 `screenshots/`，最近一次桌面和移动端截图已在 v3 项目地图迭代后更新。
 
 ## Spec Sync
 

@@ -53,4 +53,34 @@ export const buildLog = [
     title: "接入 GitHub",
     description: "把联系区和关键项目卡片连接到真实 GitHub 账号主页。",
   },
+  {
+    date: "2026-05-31",
+    type: "prd",
+    title: "启动 v3 项目地图",
+    description: "确定用精选项目卡片和 Codex Workbench 地图展示所有重要 Codex 项目。",
+  },
+  {
+    date: "2026-05-31",
+    type: "update",
+    title: "整理 Codex 项目体系",
+    description: "把个人主页、个人公众号、微信 ClawBot、AI 内参、思想孵化、桌面助手原型和视觉交付翻译成公开可读证据。",
+  },
+  {
+    date: "2026-05-31",
+    type: "code",
+    title: "新增 Workbench 区块",
+    description: "让项目区不只展示单个作品，也展示背后的 AI 协作工作台版图。",
+  },
+  {
+    date: "2026-05-31",
+    type: "prd",
+    title: "启动 v4 成长证据链",
+    description: "把页面主角从项目地图调回到人：项目是证据，方法是支撑。",
+  },
+  {
+    date: "2026-05-31",
+    type: "update",
+    title: "重写项目证据卡片",
+    description: "每个项目都回答问题、我做了什么、它证明什么，让作品服务成长叙事。",
+  },
 ];
