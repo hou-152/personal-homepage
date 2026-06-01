@@ -16,4 +16,4 @@
 
 - [x] 本地构建
 - [x] 桌面和移动端截图检查
-- [ ] commit + push 到 GitHub Pages
+- [x] commit + push 到 GitHub Pages
