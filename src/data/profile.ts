@@ -16,7 +16,7 @@ export const profile = {
   focus: ["AI 信息流", "判断材料", "Agent 协作", "作品证据"],
   stats: [
     { value: "01", label: "重点案例" },
-    { value: "07", label: "作品旁证" },
+    { value: "06", label: "作品旁证" },
     { value: "∞", label: "持续构建" },
   ],
 };

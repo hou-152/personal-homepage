@@ -113,4 +113,10 @@ export const buildLog = [
     title: "接入碳水蛋白质配额卡",
     description: "把已上线的减脂饮食计算器加入项目证据，并连接 GitHub Pages Demo 和源码仓库。",
   },
+  {
+    date: "2026-06-01",
+    type: "update",
+    title: "去重 AI 内参项目表达",
+    description: "将《serious AI 内参》保留为重点案例，把信息流 Demo 作为它的展示方式，不再重复成普通项目卡片。",
+  },
 ];

@@ -34,17 +34,6 @@ export const projects = [
     status: "ready",
   },
   {
-    title: "AI 内参编辑流水线",
-    summary: "把 AI 信息变成判断，把判断推进成行动。",
-    problem: "团队每天面对大量 AI 信息，但很难判断什么值得看、为什么重要、下一步做什么。",
-    action: "我搭建信息接入、人工筛选、日报生成、评论入库和深度拆解流程。",
-    proof: "能把 AI 信息压力转成可复盘、可交付、可行动的判断链路。",
-    proves: ["AI 内参", "判断链路", "Agent 协作"],
-    demoUrl: "#ai-neican-demo",
-    githubUrl: "",
-    status: "ready",
-  },
-  {
     title: "碳水蛋白质配额卡",
     summary: "把一张难读的健身配额表变成填几项就出结果的饮食计算器。",
     problem: "减脂增肌新手知道要控制饮食，却不知道今天该吃多少碳水和蛋白质。",
