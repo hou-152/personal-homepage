@@ -119,4 +119,10 @@ export const buildLog = [
     title: "去重 AI 内参项目表达",
     description: "将《serious AI 内参》保留为重点案例，把信息流 Demo 作为它的展示方式，不再重复成普通项目卡片。",
   },
+  {
+    date: "2026-06-01",
+    type: "update",
+    title: "重构首页代表作品入口",
+    description: "将顶栏压缩为五个入口，接入 Da Capo 头像，并把首屏右侧改为《serious AI 内参》代表作品预览。",
+  },
 ];

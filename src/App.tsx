@@ -27,13 +27,11 @@ import { aiNeicanDemoSteps } from "./data/ai-neican-demo";
 import { aiNeicanCaseEvidence } from "./data/ai-neican-case";
 
 const navItems = [
-  { label: "我是谁", href: "#identity" },
-  { label: "作品线", href: "#growth" },
-  { label: "项目", href: "#projects" },
-  { label: "AI 内参", href: "#/ai-neican-case" },
-  { label: "方法", href: "#workbench" },
-  { label: "能力", href: "#abilities" },
-  { label: "Build Log", href: "#build-log" },
+  { label: "首页", href: "#top" },
+  { label: "代表作品", href: "#featured-work" },
+  { label: "作品证据", href: "#project-evidence" },
+  { label: "关于我", href: "#identity" },
+  { label: "联系", href: "#contact" },
 ];
 
 const typeClass: Record<string, string> = {
@@ -170,8 +168,11 @@ function Header() {
   return (
     <header className="site-header" aria-label="主导航">
       <a className="brand" href="#top" aria-label="回到首页">
-        <span className="brand-mark">{profile.brandMark}</span>
-        <span>{profile.brand}</span>
+        <img className="brand-avatar" src={profile.avatar} alt="Da Capo 头像" />
+        <span className="brand-copy">
+          <strong>{profile.brand}</strong>
+          <small>把信息变成判断材料</small>
+        </span>
       </a>
       <nav>
         {navItems.map((item) => (
@@ -195,39 +196,77 @@ function Hero() {
           ))}
         </h1>
         <p className="hero-subtitle">{profile.subtitle}</p>
+        <div className="hero-person-note">
+          <img src={profile.avatar} alt="Da Capo 头像" />
+          <span>{profile.heroNote}</span>
+        </div>
         <div className="hero-actions">
-          <a className="primary-action" href="#ai-neican-demo">
-            看 AI 内参 Demo
+          <a className="primary-action" href="#featured-work">
+            看代表作品
             <ArrowDown size={18} aria-hidden="true" />
           </a>
-          <a className="secondary-action" href="#/ai-neican-case">
-            看完整证据链
+          <a className="secondary-action" href="#contact">
+            联系我
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
       </div>
-      <div className="hero-visual" aria-label="AI 内参信息流视觉图">
-        <div className="flow-card active">
-          <span>01</span>
-          RSS
+      <div className="hero-work-preview" aria-label="《serious AI 内参》代表作品预览">
+        <div className="hero-work-head">
+          <div>
+            <p className="eyebrow">{featuredProject.eyebrow}</p>
+            <h2>
+              当前代表作品：
+              <span>{featuredProject.title}</span>
+            </h2>
+          </div>
+          <span className="hero-work-status">ready</span>
         </div>
-        <div className="flow-card">
-          <span>02</span>
-          Reader
+        <p className="hero-work-summary">
+          从每日信息涌入，到人工筛选、Agent 日报、三级笔记和概念网络，最后沉淀成下一步判断。
+        </p>
+        <div className="workstation-preview">
+          <div className="workstation-bar">
+            <span />
+            <span />
+            <span />
+            <strong>260531 期 · AI 内参工作台预览</strong>
+          </div>
+          <div className="workstation-body">
+            <div className="insight-card">
+              <strong>今日洞察</strong>
+              <div>
+                <span>Inbox 30</span>
+                <span>入库 20</span>
+                <span>主题 Top 3</span>
+                <span>判断线索</span>
+              </div>
+            </div>
+            <div className="pipeline-preview">
+              <span>01 信息进入阅读池</span>
+              <span>02 Agent 整理日报</span>
+              <span>03 三级笔记 / 概念网络</span>
+              <span>04 沉淀为判断材料</span>
+            </div>
+          </div>
         </div>
-        <div className="flow-card">
-          <span>03</span>
-          Daily
+        <div className="hero-work-actions">
+          <button className="primary-action disabled-action" type="button" disabled title="视频制作中">
+            <Play size={18} aria-hidden="true" />
+            播放 90 秒演示
+          </button>
+          <a className="secondary-action" href="#ai-neican-demo">
+            看信息流 Demo
+            <ArrowDown size={18} aria-hidden="true" />
+          </a>
+          <a className="tertiary-action" href="#/ai-neican-case">
+            看完整证据链
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
         </div>
-        <div className="flow-card strong">
-          <span>04</span>
-          Agent
-        </div>
-        <div className="trajectory-line" />
-        <div className="signal-panel">
-          <Sparkles size={20} aria-hidden="true" />
-          <p>把 RSS、阅读库、日报、笔记和 Agent 串成一个信息流 Demo</p>
-        </div>
+        <p className="hero-work-note">
+          轻量 Demo 看流程，完整证据链看真实素材、工作台视图和交付痕迹。
+        </p>
       </div>
     </section>
   );
@@ -304,10 +343,10 @@ function Projects() {
         <p className="eyebrow">Projects</p>
         <h2>先看一个重点案例，再看其他作品证据</h2>
       </div>
-      <article className="featured-project-card">
+      <article className="featured-project-card" id="featured-work">
         <div className="featured-project-copy">
           <p className="eyebrow">{featuredProject.eyebrow}</p>
-          <h3>{featuredProject.title}</h3>
+          <h3>当前代表作品：{featuredProject.title}</h3>
           <p className="featured-project-summary">{featuredProject.summary}</p>
           <div className="featured-evidence">
             <p>
@@ -353,7 +392,7 @@ function Projects() {
           </div>
         </div>
       </article>
-      <div className="project-grid">
+      <div className="project-grid" id="project-evidence">
         {projects.map((project) => (
           <article className="project-card" key={project.title}>
             <div className="project-topline">

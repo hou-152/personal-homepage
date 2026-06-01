@@ -1,7 +1,7 @@
 export const featuredProject = {
-  eyebrow: "Featured Work",
+  eyebrow: "Featured Work Preview",
   title: "《serious AI 内参》",
-  summary: "把 AI 信息变成判断，把判断推进成行动。",
+  summary: "一套把 RSS、阅读库、日报、笔记和 Agent 串起来的信息流系统。",
   problem: "AI 信息太多，团队很难判断什么值得看、为什么重要、下一步该做什么。",
   action: "我把 RSS 信息源、人工筛选、日报生成、评论入库和深度拆解串成一条稳定流程。",
   proof: "一批可复盘、可交付、可继续使用的内参素材和判断线索。",

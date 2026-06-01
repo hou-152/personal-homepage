@@ -2,11 +2,13 @@ export const profile = {
   name: "侯斯博的个人主页",
   brand: "侯斯博 / Da Capo",
   brandMark: "DC",
-  eyebrow: "AI Neican · Information Flow Demo",
+  avatar: `${import.meta.env.BASE_URL}avatar-dacapo.jpg`,
+  eyebrow: "Personal Homepage",
   headline: "侯斯博 / Da Capo",
   headlineLines: ["侯斯博 /", "Da Capo"],
   subtitle:
-    "现在最值得看的，是我正在做的《AI 内参》：一个把 RSS、阅读库、日报、笔记和 Agent 串起来的信息流 Demo。",
+    "我正在把 AI 信息压力，做成可复盘、可交付、可行动的判断系统。",
+  heroNote: "现在最值得看的，是我正在做的《serious AI 内参》。",
   identity:
     "我是侯斯博，也用 Da Capo 这个名字。我正在把信息、判断和作品串成一条能被看见的工作链路。",
   intro: [
