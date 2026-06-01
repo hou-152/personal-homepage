@@ -171,8 +171,9 @@ function Header() {
         <img className="brand-avatar" src={profile.avatar} alt="Da Capo 头像" />
         <span className="brand-copy">
           <strong>{profile.brand}</strong>
-          <small>把信息变成判断材料</small>
+          <small>个人主页 · {profile.versionLabel}</small>
         </span>
+        <span className="version-badge">{profile.siteVersion}</span>
       </a>
       <nav>
         {navItems.map((item) => (
@@ -196,8 +197,7 @@ function Hero() {
           ))}
         </h1>
         <p className="hero-subtitle">{profile.subtitle}</p>
-        <div className="hero-person-note">
-          <img src={profile.avatar} alt="Da Capo 头像" />
+        <div className="hero-person-note" aria-label="Da Capo 名字说明">
           <span>{profile.heroNote}</span>
         </div>
         <div className="hero-actions">
@@ -222,6 +222,7 @@ function Hero() {
           </div>
           <span className="hero-work-status">ready</span>
         </div>
+        <p className="hero-work-statement">{profile.workStatement}</p>
         <p className="hero-work-summary">
           从每日信息涌入，到人工筛选、Agent 日报、三级笔记和概念网络，最后沉淀成下一步判断。
         </p>

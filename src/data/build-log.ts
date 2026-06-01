@@ -125,4 +125,10 @@ export const buildLog = [
     title: "重构首页代表作品入口",
     description: "将顶栏压缩为五个入口，接入 Da Capo 头像，并把首屏右侧改为《serious AI 内参》代表作品预览。",
   },
+  {
+    date: "2026-06-02",
+    type: "update",
+    title: "启动 V11 首屏版本化",
+    description: "在顶部显示 V11 和迭代次数，重排首屏左右栏，让左栏讲人，右栏讲《serious AI 内参》的判断系统。",
+  },
 ];

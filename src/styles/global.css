@@ -59,7 +59,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 14px clamp(18px, 4vw, 56px);
+  padding: 12px clamp(18px, 4vw, 56px);
   border-bottom: 1px solid rgba(16, 18, 22, 0.1);
   background: rgba(247, 244, 237, 0.92);
   backdrop-filter: blur(14px);
@@ -101,6 +101,19 @@ button {
   line-height: 1.1;
 }
 
+.version-badge {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border: 2px solid var(--ink);
+  background: var(--green);
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
 .site-header nav {
   display: flex;
   flex-wrap: wrap;
@@ -122,7 +135,7 @@ button {
 .section-band {
   width: min(1120px, calc(100% - 36px));
   margin: 0 auto;
-  padding: 86px 0;
+  padding: 74px 0;
   scroll-margin-top: 88px;
 }
 
@@ -133,10 +146,15 @@ button {
 
 .hero {
   display: grid;
-  min-height: calc(100vh - 64px);
-  grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
-  gap: 54px;
+  min-height: auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(390px, 1.1fr);
+  gap: 48px;
   align-items: center;
+}
+
+.hero.section-band {
+  padding-top: clamp(42px, 7vh, 62px);
+  padding-bottom: clamp(28px, 4vh, 42px);
 }
 
 .eyebrow {
@@ -158,7 +176,7 @@ p {
 h1 {
   margin: 0;
   max-width: 680px;
-  font-size: clamp(36px, 4.8vw, 62px);
+  font-size: clamp(36px, 4.6vw, 60px);
   font-weight: 820;
   line-height: 1.12;
   letter-spacing: 0;
@@ -183,8 +201,8 @@ h3 {
 }
 
 .hero-subtitle {
-  max-width: 680px;
-  margin: 24px 0 0;
+  max-width: 620px;
+  margin: 22px 0 0;
   color: var(--muted);
   font-size: clamp(17px, 2vw, 22px);
   line-height: 1.65;
@@ -199,7 +217,7 @@ h3 {
 }
 
 .hero-actions {
-  margin-top: 34px;
+  margin-top: 28px;
 }
 
 .primary-action,
@@ -240,33 +258,23 @@ h3 {
 }
 
 .hero-person-note {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 640px;
-  margin-top: 22px;
+  display: grid;
+  max-width: 590px;
+  margin-top: 18px;
+  border-left: 4px solid var(--ink);
+  padding-left: 14px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   line-height: 1.6;
 }
 
-.hero-person-note img {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 auto;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  object-fit: cover;
-  box-shadow: 4px 4px 0 var(--ink);
-}
-
 .hero-work-preview {
   display: grid;
-  min-height: 560px;
+  min-height: auto;
   align-content: start;
-  gap: 18px;
-  padding: clamp(22px, 3vw, 30px);
+  gap: 12px;
+  padding: clamp(18px, 2.4vw, 24px);
   border: 2px solid var(--ink);
   background:
     linear-gradient(135deg, transparent 0 44%, rgba(239, 91, 79, 0.14) 44% 52%, transparent 52%),
@@ -282,7 +290,7 @@ h3 {
 }
 
 .hero-work-head h2 {
-  font-size: clamp(28px, 3.5vw, 46px);
+  font-size: clamp(25px, 2.9vw, 38px);
   line-height: 1.05;
 }
 
@@ -300,12 +308,20 @@ h3 {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
+.hero-work-statement {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(17px, 1.85vw, 21px);
+  font-weight: 950;
+  line-height: 1.45;
+}
+
 .hero-work-summary,
 .hero-work-note {
   margin: 0;
   color: var(--muted);
   font-weight: 780;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 .workstation-preview {
@@ -324,7 +340,7 @@ h3 {
   border-bottom: 2px solid var(--ink);
   background: #fdfbf5;
   color: var(--ink);
-  padding: 11px 13px;
+  padding: 9px 12px;
 }
 
 .workstation-bar span {
@@ -354,21 +370,21 @@ h3 {
 
 .workstation-body {
   display: grid;
-  gap: 14px;
-  padding: 18px;
+  gap: 10px;
+  padding: 12px;
 }
 
 .insight-card {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   border: 2px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.08);
-  padding: 16px;
+  padding: 11px;
 }
 
 .insight-card strong {
   color: var(--green);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .insight-card div {
@@ -381,8 +397,8 @@ h3 {
 .pipeline-preview span {
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.08);
-  padding: 9px 10px;
-  font-size: 13px;
+  padding: 7px 9px;
+  font-size: 12px;
   font-weight: 900;
   line-height: 1.35;
 }
@@ -400,15 +416,15 @@ h3 {
 .hero-work-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .hero-work-actions .primary-action,
 .hero-work-actions .secondary-action,
 .hero-work-actions .tertiary-action {
-  min-height: 42px;
-  padding: 10px 12px;
-  font-size: 13px;
+  min-height: 38px;
+  padding: 8px 10px;
+  font-size: 12px;
 }
 
 .section-heading {
@@ -1685,6 +1701,7 @@ h3 {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
   }
 
   .site-header nav {
@@ -1705,7 +1722,7 @@ h3 {
 
   .hero {
     min-height: auto;
-    padding-top: 56px;
+    padding-top: 44px;
   }
 
   .hero-work-preview {
@@ -1753,7 +1770,7 @@ h3 {
   .site-header nav {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    column-gap: 10px;
+    column-gap: 8px;
     row-gap: 4px;
   }
 
@@ -1761,16 +1778,16 @@ h3 {
     min-width: 0;
     padding: 7px 0;
     margin-right: 0;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
   }
 
   .section-band {
-    width: min(320px, calc(100vw - 28px));
-    max-width: min(320px, calc(100vw - 28px));
+    width: min(360px, calc(100vw - 28px));
+    max-width: min(360px, calc(100vw - 28px));
     margin-right: 14px;
     margin-left: 14px;
-    padding: 58px 0;
+    padding: 46px 0;
   }
 
   h1 {
@@ -1786,7 +1803,7 @@ h3 {
   }
 
   .brand-copy small {
-    display: none;
+    font-size: 10px;
   }
 
   .brand-copy strong {
@@ -1826,13 +1843,15 @@ h3 {
 
   .hero-person-note {
     align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.58;
   }
 
   .hero-work-preview {
     width: min(100%, calc(100vw - 36px));
     max-width: calc(100vw - 36px);
     min-height: auto;
-    margin-top: 42px;
+    margin-top: 32px;
     overflow: hidden;
     padding: 18px;
   }
@@ -1842,8 +1861,20 @@ h3 {
   }
 
   .hero-work-head h2 {
-    font-size: 25px;
+    font-size: 23px;
     line-height: 1.12;
+  }
+
+  .hero-work-statement {
+    font-size: 18px;
+  }
+
+  .workstation-bar strong {
+    font-size: 11px;
+  }
+
+  .workstation-body {
+    padding: 12px;
   }
 
   .insight-card div {
