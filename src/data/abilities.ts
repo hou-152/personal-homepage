@@ -21,8 +21,8 @@ export const abilities = [
   },
   {
     name: "原型与视觉交付",
-    description: "把想法做成能打开、能体验、能展示的页面、PPT 和 PDF 交付物。",
-    evidence: ["桌面助手原型", "PPT/PDF", "静态页面"],
+    description: "把想法做成能打开、能体验、能展示的页面和原型。",
+    evidence: ["桌面助手原型", "个人主页", "静态页面"],
   },
   {
     name: "公开展示",

@@ -63,7 +63,7 @@ export const buildLog = [
     date: "2026-05-31",
     type: "update",
     title: "整理 Codex 项目体系",
-    description: "把个人主页、个人公众号、微信 ClawBot、AI 内参、思想孵化、桌面助手原型和视觉交付翻译成公开可读证据。",
+    description: "把个人主页、个人公众号、微信 ClawBot、AI 内参、思想孵化和桌面助手原型翻译成公开可读证据。",
   },
   {
     date: "2026-05-31",
@@ -106,5 +106,11 @@ export const buildLog = [
     type: "code",
     title: "升级 Build Log 节奏图",
     description: "参考 GitHub contribution 的结构，用构建热力图展示持续推进，而不是普通日志列表。",
+  },
+  {
+    date: "2026-06-01",
+    type: "update",
+    title: "接入碳水蛋白质配额卡",
+    description: "把已上线的减脂饮食计算器加入项目证据，并连接 GitHub Pages Demo 和源码仓库。",
   },
 ];
