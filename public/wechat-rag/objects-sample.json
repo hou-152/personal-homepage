@@ -1,0 +1,57 @@
+{
+  "public_note": "Redacted sample for portfolio display. Full raw chat logs and full object set are local only.",
+  "schema": {
+    "id": "obj-NNN",
+    "type": "case|tool|viewpoint|problem|action|person|question",
+    "title": "object title",
+    "summary": "2-4 sentence reusable summary",
+    "source_local_ids": [123],
+    "evidence_quotes": {
+      "123": "redacted original quote"
+    },
+    "people": ["redacted"],
+    "tools": ["tool name"],
+    "tags": ["tag"],
+    "fact_level": "原文明确|推断|不确定",
+    "confidence": "高|中|低",
+    "next_action": "next action or null"
+  },
+  "sample_objects": [
+    {
+      "id": "obj-001",
+      "type": "case",
+      "title": "AI content production workflow",
+      "summary": "A group member described a full AI content workflow from topic selection to publishing. The object is kept because it is a reusable workflow case, not just a daily-chat highlight.",
+      "source_local_ids": [566, 785],
+      "evidence_quotes": {
+        "566": "[redacted quote: workflow setup and quality gates]",
+        "785": "[redacted quote: one-command publishing flow]"
+      },
+      "people": ["redacted"],
+      "tools": ["Codex", "Claude", "AIhot"],
+      "tags": ["自动化", "内容生产", "Agent架构"],
+      "fact_level": "原文明确",
+      "confidence": "高",
+      "next_action": null
+    },
+    {
+      "id": "obj-013",
+      "type": "problem",
+      "title": "Claude account and IP risk",
+      "summary": "Multiple messages described account risk and IP instability. It is stored as a risk object because future workflows need to account for environment and access constraints.",
+      "source_local_ids": [194, 399, 1100, 1607],
+      "evidence_quotes": {
+        "194": "[redacted quote: account risk]",
+        "399": "[redacted quote: account block]",
+        "1100": "[redacted quote: IP exposure risk]",
+        "1607": "[redacted quote: safer usage suggestion]"
+      },
+      "people": ["redacted"],
+      "tools": ["Claude Code", "Codex"],
+      "tags": ["封号风险", "环境配置"],
+      "fact_level": "原文明确",
+      "confidence": "高",
+      "next_action": "Track access-risk handling in future agent workflows."
+    }
+  ]
+}

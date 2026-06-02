@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import ArrowDown from "lucide-react/dist/esm/icons/arrow-down";
 import ArrowUpRight from "lucide-react/dist/esm/icons/arrow-up-right";
 import Blocks from "lucide-react/dist/esm/icons/blocks";
-import BrainCircuit from "lucide-react/dist/esm/icons/brain-circuit";
-import CheckCircle2 from "lucide-react/dist/esm/icons/check-circle-2";
 import Flame from "lucide-react/dist/esm/icons/flame";
 import Github from "lucide-react/dist/esm/icons/github";
 import Globe from "lucide-react/dist/esm/icons/globe";
@@ -19,19 +17,35 @@ import Sparkles from "lucide-react/dist/esm/icons/sparkles";
 import { profile } from "./data/profile";
 import { growth } from "./data/growth";
 import { featuredProject, projects } from "./data/projects";
-import { abilities } from "./data/abilities";
 import { buildLog } from "./data/build-log";
 import { links } from "./data/links";
-import { workbenchGroups } from "./data/workbench";
 import { aiNeicanDemoSteps } from "./data/ai-neican-demo";
 import { aiNeicanCaseEvidence } from "./data/ai-neican-case";
+import { agentEvidence, agentEvidenceLinks } from "./data/agent-evidence";
 
 const navItems = [
   { label: "首页", href: "#top" },
   { label: "代表作品", href: "#featured-work" },
-  { label: "作品证据", href: "#project-evidence" },
-  { label: "关于我", href: "#identity" },
+  { label: "交付证据", href: "#delivery-proof" },
   { label: "联系", href: "#contact" },
+];
+
+const thinkingNotes = [
+  {
+    index: "01",
+    title: "先做判断系统，不做 AI 新闻页",
+    body: "AI 信息不缺转述，缺的是能被继续使用的判断材料。《serious AI 内参》先解决信息筛选、复盘和行动线索的问题。",
+  },
+  {
+    index: "02",
+    title: "Agent 负责加工，人负责判断",
+    body: "我让 Agent 接住整理、排版、提取和写回，但保留人工筛选、取舍、验收和下一步判断，避免把责任外包给流程。",
+  },
+  {
+    index: "03",
+    title: "用证据替代自我解释",
+    body: "README、Agent Instructions、屏录、构建记录和公开 Demo 共同说明我做过什么；能力不需要单独打分，作品会自己说明。",
+  },
 ];
 
 const typeClass: Record<string, string> = {
@@ -151,14 +165,11 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Identity />
       <GrowthTimeline />
       <Projects />
-      <AiNeicanDemo />
-      <Workbench />
-      <AbilityMap />
+      <WorkThinking />
+      <DeliveryProof />
       <BuildHeatmap />
-      <Changelog />
       <Contact />
     </>
   );
@@ -252,13 +263,17 @@ function Hero() {
           </div>
         </div>
         <div className="hero-work-actions">
-          <button className="primary-action disabled-action" type="button" disabled title="视频制作中">
+          <a className="primary-action" href="#/ai-neican-case">
             <Play size={18} aria-hidden="true" />
-            播放 90 秒演示
-          </button>
-          <a className="secondary-action" href="#ai-neican-demo">
+            播放 10 秒实录
+          </a>
+          <a className="secondary-action" href="#/ai-neican-case">
             看信息流 Demo
-            <ArrowDown size={18} aria-hidden="true" />
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <a className="tertiary-action" href={featuredProject.readmeUrl} target="_blank" rel="noreferrer">
+            工作流 README
+            <ArrowUpRight size={18} aria-hidden="true" />
           </a>
           <a className="tertiary-action" href="#/ai-neican-case">
             看完整证据链
@@ -268,43 +283,6 @@ function Hero() {
         <p className="hero-work-note">
           轻量 Demo 看流程，完整证据链看真实素材、工作台视图和交付痕迹。
         </p>
-      </div>
-    </section>
-  );
-}
-
-function Identity() {
-  return (
-    <section className="section-band identity-section" id="identity">
-      <div className="section-heading">
-        <p className="eyebrow">Identity</p>
-        <h2>我是谁</h2>
-      </div>
-      <div className="identity-grid">
-        <div className="identity-statement">
-          <BrainCircuit size={28} aria-hidden="true" />
-          <p>{profile.identity}</p>
-        </div>
-        <div className="identity-aside">
-          <div className="intro-card">
-            {profile.intro.map((item) => (
-              <p key={item}>{item}</p>
-            ))}
-          </div>
-          <div className="focus-list">
-            {profile.focus.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
-        <div className="stat-row">
-          {profile.stats.map((stat) => (
-            <div className="stat-item" key={stat.label}>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -355,6 +333,10 @@ function Projects() {
               {featuredProject.problem}
             </p>
             <p>
+              <span>作品逻辑</span>
+              信息进入系统，先变成可筛选材料，再变成判断线索，最后推动下一步行动。
+            </p>
+            <p>
               <span>我怎么做</span>
               {featuredProject.action}
             </p>
@@ -366,6 +348,14 @@ function Projects() {
           <div className="featured-actions">
             <a href={featuredProject.demoUrl}>
               看信息流 Demo
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a href={featuredProject.readmeUrl} target="_blank" rel="noreferrer">
+              工作流 README
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a href={featuredProject.instructionsUrl} target="_blank" rel="noreferrer">
+              Agent Instructions
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
             <a href={featuredProject.logUrl}>
@@ -423,8 +413,14 @@ function Projects() {
             </div>
             <div className="project-actions">
               {project.demoUrl && (
-                <a href={project.demoUrl}>
-                  Demo
+                <a href={project.demoUrl} target={project.demoUrl.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                  {project.demoLabel}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              )}
+              {project.secondaryDemoUrl && (
+                <a href={project.secondaryDemoUrl} target="_blank" rel="noreferrer">
+                  {project.secondaryDemoLabel}
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
               )}
@@ -442,7 +438,59 @@ function Projects() {
   );
 }
 
-function AiNeicanDemo() {
+function WorkThinking() {
+  return (
+    <section className="section-band thinking-section" id="work-thinking">
+      <div className="section-heading">
+        <p className="eyebrow">Thinking</p>
+        <h2>作品背后的思考</h2>
+        <p className="section-intro">
+          这里不再单独摆方法论卡片，只留下几个真实取舍：我为什么这样做，以及哪些判断不能交给包装来替代。
+        </p>
+      </div>
+      <div className="thinking-grid">
+        {thinkingNotes.map((note) => (
+          <article className="thinking-card" key={note.index}>
+            <span>{note.index}</span>
+            <h3>{note.title}</h3>
+            <p>{note.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function DeliveryProof() {
+  return (
+    <section className="section-band evidence-section" id="delivery-proof">
+      <div className="section-heading">
+        <p className="eyebrow">Delivery Proof</p>
+        <h2>我如何交付作品</h2>
+        <p className="section-intro">
+          能力不单独打分，只看它是否已经落到作品、流程和可点击证据里。这里保留交付链路，也保留还没补齐的缺口。
+        </p>
+      </div>
+      <div className="evidence-matrix">
+        {agentEvidence.map((item) => (
+          <article className={`evidence-row evidence-${item.status}`} key={item.requirement}>
+            <div>
+              <span className="evidence-status">{item.status === "ready" ? "ready" : "gap"}</span>
+              <h3>{item.requirement}</h3>
+            </div>
+            <p>{item.evidence}</p>
+            <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              {item.linkLabel}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AiNeicanDemo({ showCaseLink = true }: { showCaseLink?: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const activeStep = aiNeicanDemoSteps[activeIndex];
@@ -486,10 +534,12 @@ function AiNeicanDemo() {
       <div className="neican-demo-shell">
         <div className="neican-demo-heading">
           <p className="eyebrow">AI Neican Demo</p>
-          <a className="demo-case-link" href="#/ai-neican-case">
-            查看完整证据链
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
+          {showCaseLink && (
+            <a className="demo-case-link" href="#/ai-neican-case">
+              查看完整证据链
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          )}
           <h2>把 AI 信息变成判断，把判断推进成行动</h2>
           <p>
             这是《AI 内参》背后的真实工作流：信息进入、人工筛选、Agent
@@ -561,6 +611,19 @@ function AiNeicanDemo() {
             <strong>本环节之后：</strong>
             <span>{activeStep.next}</span>
           </div>
+
+          <div className="demo-recording" id="demo-recording">
+            <div>
+              <span className="demo-panel-label">屏录实证</span>
+              <h3>10 秒看真实工作台</h3>
+              <p>
+                原始屏录约 75MB，不进入首屏自动加载。这里保留 10 秒轻量片段，用来证明 Demo 来自真实 Notion / Reader 工作台。
+              </p>
+            </div>
+            <video controls preload="metadata" poster={featuredProject.posterUrl}>
+              <source src={featuredProject.recordingUrl} type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
     </section>
@@ -590,13 +653,40 @@ function AiNeicanCasePage() {
             返回首页
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
-          <a className="secondary-action" href="#ai-neican-demo">
-            看轻量 Demo
+          <a className="secondary-action" href={agentEvidenceLinks.readme} target="_blank" rel="noreferrer">
+            工作流 README
+          </a>
+          <a className="tertiary-action" href={agentEvidenceLinks.instructions} target="_blank" rel="noreferrer">
+            Agent Instructions
           </a>
         </div>
       </section>
 
+      <AiNeicanDemo showCaseLink={false} />
+
       <section className="section-band neican-case-section">
+        <div className="case-overview-grid">
+          <article>
+            <span>01</span>
+            <h3>业务问题</h3>
+            <p>AI 信息过载，团队需要知道什么值得看、为什么重要、下一步做什么。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>工作流设计</h3>
+            <p>Reader 输入、人工筛选、Agent 日报、评论入库、笔记概念、判断简报串成一条链。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Agent 分工</h3>
+            <p>Agent 负责整理、排版、提取和写回；我负责筛选、判断、验收和行动优先级。</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>可核验证据</h3>
+            <p>README、Instructions、屏录 demo、阅读库、日报和概念网络共同构成证据链。</p>
+          </article>
+        </div>
         <div className="case-flow-strip" aria-label="AI 内参完整证据链流程">
           {aiNeicanCaseEvidence.map((item) => (
             <button key={item.id} type="button" onClick={() => scrollToEvidence(item.id)}>
@@ -659,66 +749,13 @@ function AiNeicanCasePage() {
   );
 }
 
-function Workbench() {
-  return (
-    <section className="section-band workbench-section" id="workbench">
-      <div className="section-heading">
-        <p className="eyebrow">Method</p>
-        <h2>作品背后的方法</h2>
-      </div>
-      <div className="workbench-grid">
-        {workbenchGroups.map((group, index) => (
-          <article className="workbench-card" key={group.name}>
-            <div className="workbench-index">
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <MapIcon size={20} aria-hidden="true" />
-            </div>
-            <h3>{group.name}</h3>
-            <p>{group.summary}</p>
-            <div className="workbench-projects">
-              {group.projects.map((project) => (
-                <span key={project}>{project}</span>
-              ))}
-            </div>
-            <strong>{group.proof}</strong>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function AbilityMap() {
-  return (
-    <section className="section-band" id="abilities">
-      <div className="section-heading">
-        <p className="eyebrow">Ability Map</p>
-        <h2>能力不是百分比，而是能被项目证明的结果</h2>
-      </div>
-      <div className="ability-grid">
-        {abilities.map((ability) => (
-          <article className="ability-card" key={ability.name}>
-            <CheckCircle2 size={22} aria-hidden="true" />
-            <h3>{ability.name}</h3>
-            <p>{ability.description}</p>
-            <div>
-              {ability.evidence.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function BuildHeatmap() {
   const activityCells = getBuildActivityCells(buildLog);
   const activeDays = new Set(buildLog.map((item) => item.date)).size;
+  const recentBuilds = buildLog.slice(-3).reverse();
   const proofStats = [
     { value: buildLog.length, label: "有效构建记录" },
-    { value: "5", label: "迭代阶段" },
+    { value: profile.siteVersion, label: "当前版本" },
     { value: activeDays, label: "活跃构建日" },
   ];
 
@@ -726,7 +763,10 @@ function BuildHeatmap() {
     <section className="section-band build-section" id="build-log">
       <div className="section-heading">
         <p className="eyebrow">Build Log</p>
-        <h2>构建节奏：不是日记，是推进证据</h2>
+        <h2>构建快照</h2>
+        <p className="section-intro">
+          这里只保留已经完成的推进证据。当前任务和待补缺口不再单独抢占首页空间。
+        </p>
       </div>
       <div className="heatmap-wrap">
         <div className="build-proof-panel">
@@ -740,9 +780,7 @@ function BuildHeatmap() {
               <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
-          <p>
-            这里不记录生活碎片，只留下能证明推进的动作：写清楚、做出来、上线、复盘、再迭代。
-          </p>
+          <p>这里不记录生活碎片，只留下能证明推进的动作：写清楚、做出来、上线、复盘、再迭代。</p>
           <div className="contribution-map" aria-label="构建贡献热力图">
             {activityCells.map((cell) => (
               <button
@@ -780,7 +818,11 @@ function BuildHeatmap() {
           </div>
         </div>
         <div className="build-log-list">
-          {buildLog.slice(-5).reverse().map((item) => (
+          <div className="build-snapshot-heading">
+            <p className="build-proof-kicker">Recent progress</p>
+            <h3>最近推进</h3>
+          </div>
+          {recentBuilds.map((item) => (
             <article key={`${item.date}-${item.title}`}>
               <span className={typeClass[item.type]}>{item.date}</span>
               <strong>{item.title}</strong>
@@ -788,29 +830,6 @@ function BuildHeatmap() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Changelog() {
-  return (
-    <section className="section-band changelog-section">
-      <div className="section-heading">
-        <p className="eyebrow">Now Building</p>
-        <h2>最近更新让证据链继续生长</h2>
-      </div>
-      <div className="changelog">
-        {buildLog.slice(2, 6).map((item) => (
-          <article key={`${item.date}-${item.title}`}>
-            <Flame size={18} aria-hidden="true" />
-            <div>
-              <span>{item.date}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          </article>
-        ))}
       </div>
     </section>
   );

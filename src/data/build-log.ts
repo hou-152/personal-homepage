@@ -131,4 +131,40 @@ export const buildLog = [
     title: "启动 V11 首屏版本化",
     description: "在顶部显示 V11 和迭代次数，重排首屏左右栏，让左栏讲人，右栏讲《serious AI 内参》的判断系统。",
   },
+  {
+    date: "2026-06-02",
+    type: "update",
+    title: "启动 V12 证据直观化",
+    description: "把工作流 README、Agent Instructions、屏录 Demo 和岗位证据矩阵接入首页，避免让招聘方自行推理。",
+  },
+  {
+    date: "2026-06-02",
+    type: "design",
+    title: "启动 V13 证据架构收束",
+    description: "把岗位矩阵、方法库、能力地图和 Now Building 合并成更自然的作品思考与交付证据结构。",
+  },
+  {
+    date: "2026-06-02",
+    type: "update",
+    title: "启动 V14 身份区与线上链接修整",
+    description: "把 Identity 从仪表盘改成人物介绍，并把碳水蛋白质配额卡接入 CloudBase 和 GitHub Pages 双线上入口。",
+  },
+  {
+    date: "2026-06-02",
+    type: "design",
+    title: "启动 V15 首页流线减法",
+    description: "删除重复的身份说明区块，让首屏直接进入 Work Line，用作品和链路证明身份。",
+  },
+  {
+    date: "2026-06-02",
+    type: "design",
+    title: "启动 V16 后半段收束",
+    description: "把完整信息流 Demo 下沉到 case 页，并把 Build Log 收成短构建快照，避免首页后半段过长。",
+  },
+  {
+    date: "2026-06-03",
+    type: "deploy",
+    title: "启动 V17 微信 RAG 证据入口",
+    description: "把微信群对象库作为 RAG 原料层接入作品集，并只公开脱敏 demo、对象样例和评测摘要。",
+  },
 ];
