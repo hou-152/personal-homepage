@@ -89,8 +89,10 @@ npm run preview
 - `src/data/links.ts` 中 GitHub、Gmail、电话和微信号已连接为真实联系方式。
 - GitHub 仓库：[hou-152/personal-homepage](https://github.com/hou-152/personal-homepage)
 - 线上地址：[https://hou-152.github.io/personal-homepage/](https://hou-152.github.io/personal-homepage/)
-- 2026-05-31 已完成 `v3-codex-project-map`：项目区升级为 7 张 Codex 项目卡片，并新增 Codex Workbench 地图区块。
-- 最近一次 `npm run build` 构建通过，Vite 构建耗时约 2.26 秒。
+- 2026-06-02 已启动 `v16-homepage-back-half-compression`：完整 AI Neican Demo 从首页下沉到 case 页，首页 Build Log 收成短构建快照。
+- 2026-06-02 `v15-homepage-flow-reduction` 已删除独立 Identity / 我是谁区块，让首屏身份表达直接进入 Work Line，避免 Da Capo 和个人介绍重复出现。
+- 2026-06-02 `v14-identity-and-live-links` 已把碳水蛋白质配额卡接入 CloudBase / GitHub Pages 双线上入口。
+- V16 后当前 4173 使用 `tmp-v16-preview` 静态预览兜底；Vite production build 在本地出现长时间卡住，后续部署前必须单独修复并重新验证。
 - 现有截图位于 `screenshots/`，最近一次桌面和移动端截图已在 v3 项目地图迭代后更新。
 
 ## Spec Sync
