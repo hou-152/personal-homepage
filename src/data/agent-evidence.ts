@@ -2,9 +2,17 @@ export const agentEvidenceLinks = {
   readme: "https://howieserious.notion.site/README-md-2ec679b108ff83d9b05901e0811ddb15",
   instructions:
     "https://howieserious.notion.site/agent-instructions-646679b108ff8230a08801187b036445",
+  jd21: `${import.meta.env.BASE_URL}job-evidence/jd-21-ai-product-assistant-ceo-office.md`,
 };
 
 export const agentEvidence = [
+  {
+    requirement: "CEO Office 岗位匹配",
+    evidence: "JD-21 拆成 Builder / Scout / Knowledge Manager 三条雇主语言，并映射到 AI 内参、微信对象库和知识库证据",
+    linkLabel: "看匹配页",
+    href: agentEvidenceLinks.jd21,
+    status: "ready",
+  },
   {
     requirement: "工作流设计",
     evidence: "《serious AI 内参》从信息输入到判断材料的六步链路",

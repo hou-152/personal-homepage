@@ -162,6 +162,12 @@ export const buildLog = [
     description: "把完整信息流 Demo 下沉到 case 页，并把 Build Log 收成短构建快照，避免首页后半段过长。",
   },
   {
+    date: "2026-06-04",
+    type: "update",
+    title: "启动 V18 JD-21 岗位匹配",
+    description: "把 AI 产品助理 CEO Office 岗位拆成 Builder / Scout / Knowledge Manager，并接入作品集交付证据。",
+  },
+  {
     date: "2026-06-03",
     type: "deploy",
     title: "启动 V17 微信 RAG 证据入口",
