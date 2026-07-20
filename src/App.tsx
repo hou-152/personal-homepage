@@ -26,8 +26,52 @@ import { agentEvidence, agentEvidenceLinks } from "./data/agent-evidence";
 const navItems = [
   { label: "首页", href: "#top" },
   { label: "代表作品", href: "#featured-work" },
+  { label: "证据墙", href: "#project-evidence" },
   { label: "交付证据", href: "#delivery-proof" },
   { label: "联系", href: "#contact" },
+];
+
+const swissWorkflowSteps = [
+  "信息进入 Reader / RSS",
+  "人工筛选关键材料",
+  "Agent 整理日报",
+  "评论与线索入库",
+  "三级笔记 / 概念网络",
+  "沉淀为行动判断",
+];
+
+const swissHeroProofs = [
+  "workflow README",
+  "agent instructions",
+  "10s recording",
+  "case page",
+];
+
+const representativeWorks = [
+  {
+    label: "Primary Case",
+    title: "《serious AI 内参》Agent 信息流系统",
+    body: "把阅读材料、RSS、人工筛选、Agent 日报、Notion 排版和校验 JSON 串成一条可复盘的信息流。",
+    points: ["信息过载 -> 判断材料", "AI 生成与人工判断分离", "管理层日报 / 行业情报"],
+    href: "#/ai-neican-case",
+    tone: "primary",
+  },
+  {
+    label: "Data Layer",
+    title: "微信对象库 / RAG 原料层",
+    body: "把 45,908 条源聊天消息提炼成 1,528 条精华块，并生成 69 个 HTML 报告。",
+    points: ["69 HTML reports", "45,908 source messages", "1,528 essence blocks"],
+    href: `${import.meta.env.BASE_URL}wechat-rag/index.html`,
+    tone: "secondary-a",
+  },
+  {
+    label: "Portfolio System",
+    title: "个人主页 / AI 作品证据系统",
+    body: "把 Brief、PRD、设计、开发、部署和 Build Log 组织成公开可访问的作品页。",
+    points: ["SpecDrivenCoding", "GitHub Pages", "持续构建记录"],
+    href: "#top",
+    tone: "secondary-b",
+  },
 ];
 
 const thinkingNotes = [
@@ -154,7 +198,7 @@ function App() {
   }, []);
 
   return (
-    <div className="site-shell" id="top">
+    <div className={page === "home" ? "site-shell v20-swiss" : "site-shell"} id="top">
       <Header />
       <main>{page === "ai-neican-case" ? <AiNeicanCasePage /> : <HomePage />}</main>
     </div>
@@ -201,64 +245,77 @@ function Hero() {
   return (
     <section className="hero section-band">
       <div className="hero-copy">
-        <p className="eyebrow">{profile.eyebrow}</p>
+        <p className="eyebrow">AI Product / Agent Workflow / Evidence System</p>
         <h1>
-          {profile.headlineLines.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
+          <span>AI 信息流</span>
+          <span>Agent 工作流</span>
+          <span>作品。</span>
         </h1>
         <p className="hero-subtitle">{profile.subtitle}</p>
-        <div className="hero-person-note" aria-label="Da Capo 名字说明">
-          <span>{profile.heroNote}</span>
+        <div className="hero-person-note" aria-label="代表作品定位">
+          <span>面向 AI Agent / AI 产品经理实习岗位，用真实信息流、对象库、工作台 Demo 和构建记录证明交付能力。</span>
         </div>
         <div className="hero-actions">
           <a className="primary-action" href="#featured-work">
             看代表作品
             <ArrowDown size={18} aria-hidden="true" />
           </a>
-          <a className="secondary-action" href="#contact">
-            联系我
+          <a className="secondary-action" href="#project-evidence">
+            看证据墙
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
       </div>
       <div className="hero-work-preview" aria-label="《serious AI 内参》代表作品预览">
-        <div className="hero-work-head">
-          <div>
-            <p className="eyebrow">{featuredProject.eyebrow}</p>
-            <h2>
-              当前代表作品：
-              <span>{featuredProject.title}</span>
-            </h2>
-          </div>
+        <div className="v20-canvas-chrome">
+          <span>FEATURED WORK / 01</span>
           <span className="hero-work-status">ready</span>
         </div>
-        <p className="hero-work-statement">{profile.workStatement}</p>
-        <p className="hero-work-summary">
-          从每日信息涌入，到人工筛选、Agent 日报、三级笔记和概念网络，最后沉淀成下一步判断。
-        </p>
-        <div className="workstation-preview">
-          <div className="workstation-bar">
-            <span />
-            <span />
-            <span />
-            <strong>260531 期 · AI 内参工作台预览</strong>
+        <div className="hero-work-head">
+          <div>
+            <p className="eyebrow">serious AI neican</p>
+            <h2>
+              不是 AI 新闻页，
+              <span>是判断材料系统。</span>
+            </h2>
           </div>
-          <div className="workstation-body">
-            <div className="insight-card">
-              <strong>今日洞察</strong>
-              <div>
-                <span>Inbox 30</span>
-                <span>入库 20</span>
-                <span>主题 Top 3</span>
-                <span>判断线索</span>
-              </div>
+          <div className="v20-case-metrics" aria-label="代表作品数据">
+            <span>
+              <strong>3775</strong>
+              articles
+            </span>
+            <span>
+              <strong>6</strong>
+              workflow steps
+            </span>
+          </div>
+        </div>
+        <div className="v20-workflow" aria-label="AI 内参信息流步骤">
+          {swissWorkflowSteps.map((step, index) => (
+            <div className="v20-workflow-step" key={step}>
+              <strong>{String(index + 1).padStart(2, "0")}</strong>
+              <span>{step}</span>
             </div>
-            <div className="pipeline-preview">
-              <span>01 信息进入阅读池</span>
-              <span>02 Agent 整理日报</span>
-              <span>03 三级笔记 / 概念网络</span>
-              <span>04 沉淀为判断材料</span>
+          ))}
+        </div>
+        <div className="v20-proof-row">
+          <div className="v20-proof-block">
+            <h3>Proof, not self-description.</h3>
+            <p>用 README、Agent Instructions、屏录、Notion / Reader 工作台和个人主页 case 页证明交付过程。</p>
+            <div>
+              {swissHeroProofs.map((proof) => (
+                <span key={proof}>{proof}</span>
+              ))}
+            </div>
+          </div>
+          <div className="v20-role-blocks">
+            <div>
+              <strong>AI</strong>
+              <span>归类 / 摘要 / 初稿 / 格式化</span>
+            </div>
+            <div>
+              <strong>Human</strong>
+              <span>筛选 / 判断 / 取舍 / 验收</span>
             </div>
           </div>
         </div>
@@ -320,9 +377,26 @@ function Projects() {
     <section className="section-band projects-section" id="projects">
       <div className="section-heading">
         <p className="eyebrow">Projects</p>
-        <h2>先看一个重点案例，再看其他作品证据</h2>
+        <h2>三个案例，证明同一件事</h2>
+        <p className="section-intro">
+          我不只会使用 AI 工具，而是在训练一种产品能力：把真实输入变成结构化数据、可执行流程、可点击 Demo 和可追溯证据。
+        </p>
       </div>
-      <article className="featured-project-card" id="featured-work">
+      <div className="v20-evidence-wall" id="featured-work">
+        {representativeWorks.map((work) => (
+          <a className={`v20-evidence-card ${work.tone}`} href={work.href} key={work.title}>
+            <span>{work.label}</span>
+            <h3>{work.title}</h3>
+            <p>{work.body}</p>
+            <div>
+              {work.points.map((point) => (
+                <small key={point}>{point}</small>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+      <article className="featured-project-card">
         <div className="featured-project-copy">
           <p className="eyebrow">{featuredProject.eyebrow}</p>
           <h3>当前代表作品：{featuredProject.title}</h3>
@@ -406,6 +480,48 @@ function Projects() {
                 {project.proof}
               </p>
             </div>
+            {(project.projectTime || project.techStack || project.featureList || project.externalLinks) && (
+              <details className="project-details">
+                <summary>项目详情</summary>
+                {project.projectTime && (
+                  <p>
+                    <span>项目时间</span>
+                    {project.projectTime}
+                  </p>
+                )}
+                {project.techStack && (
+                  <p>
+                    <span>技术栈</span>
+                    {project.techStack.join(" / ")}
+                  </p>
+                )}
+                {project.featureList && (
+                  <div>
+                    <span>页面 / 功能</span>
+                    <ul>
+                      {project.featureList.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {project.externalLinks && (
+                  <div>
+                    <span>完整外链</span>
+                    <ul className="detail-link-list">
+                      {project.externalLinks.map((link) => (
+                        <li key={link.url}>
+                          <a href={link.url} target="_blank" rel="noreferrer">
+                            <strong>{link.label}</strong>
+                            <small>{link.url}</small>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </details>
+            )}
             <div className="proof-list">
               {project.proves.map((proof) => (
                 <span key={proof}>{proof}</span>
