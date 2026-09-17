@@ -14,9 +14,24 @@
  *   `03-作业/母题库/母题库_v2_完整版.md`（冲突以母题库当前版为准）。
  */
 
-/** 主位卡片（首屏 01 位）的媒体与入口。 */
+/**
+ * 主位卡片（首屏 01 位）的媒体与入口。
+ *
+ * 媒体归属：主位＝**微信群聊 AI 日报管线**，封面截自它自己的公开证据页
+ * `public/wechat-rag/index.html`（2026-09-17 用 Chrome headless 截图，1600×1000）。
+ * ⚠ 别再把 `ai-neican-demo-*` 放到这里——那是 **AI 信息日报** 的演示，
+ * 只属于它的 case 页（`#/ai-neican-case`）；主位与封面必须是同一个项目。
+ */
 export const featuredProject = {
   demoUrl: "#selected-primary",
+  posterUrl: `${import.meta.env.BASE_URL}media/wechat-rag-poster.png`,
+};
+
+/**
+ * AI 信息日报 case 页（`#/ai-neican-case`）专用媒体。
+ * 与主位封面分开，避免再次混用：这份演示只属于 AI 信息日报。
+ */
+export const neicanCaseMedia = {
   recordingUrl: `${import.meta.env.BASE_URL}media/ai-neican-demo-10s.m4v`,
   posterUrl: `${import.meta.env.BASE_URL}media/ai-neican-demo-poster.jpg`,
 };

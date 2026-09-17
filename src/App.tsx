@@ -10,6 +10,7 @@ import Sparkles from "lucide-react/dist/esm/icons/sparkles";
 import { profile } from "./data/profile";
 import {
   featuredProject,
+  neicanCaseMedia,
   projectIndex,
   primaryWorkflow,
   supportingWorks,
@@ -202,10 +203,10 @@ function SelectedWork() {
         </div>
 
         <figure className="v21-featured-visual">
-          <img src={featuredProject.posterUrl} alt="AI 信息日报真实工作台演示封面" />
+          <img src={featuredProject.posterUrl} alt="微信群聊 AI 日报管线的对象库证据页" />
           <figcaption>
             <span>Evidence surface</span>
-            <strong>站内 case + 10 秒演示素材</strong>
+            <strong>公开证据页：对象库与质量闸门</strong>
           </figcaption>
         </figure>
       </article>
@@ -440,8 +441,8 @@ function AiNeicanDemo({ showCaseLink = true }: { showCaseLink?: boolean }) {
                 原始屏录不进入首屏自动加载。这里保留 10 秒轻量片段，用来证明 Demo 来自真实工作台。
               </p>
             </div>
-            <video controls preload="metadata" poster={featuredProject.posterUrl}>
-              <source src={featuredProject.recordingUrl} type="video/mp4" />
+            <video controls preload="metadata" poster={neicanCaseMedia.posterUrl}>
+              <source src={neicanCaseMedia.recordingUrl} type="video/mp4" />
             </video>
           </div>
         </div>
