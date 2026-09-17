@@ -1,117 +1,112 @@
+/**
+ * 项目数据唯一真源（2026-09-17 抽出）。
+ *
+ * 为什么有这个文件：此前项目清单硬编码在 App.tsx 里，加一个项目要动页面组件；
+ * 现在页面只消费本文件的导出，**加项目＝在下面数组里加一条**。
+ *
+ * 口径纪律（改本文件前先读）：
+ * - 名称用「人话标题」，与简历／BOSS 在线简历一致；内部旧叫法（AI 内参工作台／
+ *   高活跃社群日报分析器／碳水蛋白质配额卡）不再对外。
+ * - 数字只取母题库已定稿口径并带批次标注；不确定的标 status 为「进行中／实验」，
+ *   不写未核实的量级。
+ * - 不放他人品牌名与人名、不放外部课程链接、不放联系方式（电话已从公开页撤下）。
+ * - 项目增减时同步三处：本文件、`03-作业/BOSS在线简历_项目经历逐栏填写版_v1.md`、
+ *   `03-作业/母题库/母题库_v2_完整版.md`（冲突以母题库当前版为准）。
+ */
+
+/** 主位卡片（首屏 01 位）的媒体与入口。 */
 export const featuredProject = {
-  eyebrow: "Featured Work Preview",
-  title: "《serious AI 内参》",
-  summary: "一套把 RSS、阅读库、日报、笔记和 Agent 串起来的信息流系统。",
-  problem: "AI 信息太多，团队很难判断什么值得看、为什么重要、下一步该做什么。",
-  action: "我把 RSS 信息源、人工筛选、日报生成、评论入库和深度拆解串成一条稳定流程。",
-  proof: "一批可复盘、可交付、可继续使用的内参素材和判断线索。",
-  steps: ["信息接入", "人工筛选", "日报生成", "评论入库", "深度拆解", "判断行动"],
-  demoUrl: "#/ai-neican-case",
+  demoUrl: "#selected-primary",
   recordingUrl: `${import.meta.env.BASE_URL}media/ai-neican-demo-10s.m4v`,
   posterUrl: `${import.meta.env.BASE_URL}media/ai-neican-demo-poster.jpg`,
-  readmeUrl: "https://howieserious.notion.site/README-md-2ec679b108ff83d9b05901e0811ddb15",
-  instructionsUrl:
-    "https://howieserious.notion.site/agent-instructions-646679b108ff8230a08801187b036445",
-  logUrl: "#build-log",
 };
 
-export const projects = [
+/** 「精选作品」左侧索引（01–04）。 */
+export const projectIndex = [
   {
-    title: "个人主页",
-    summary: "把成长轨迹和作品证据组织成一个可分享的网站。",
-    problem: "别人需要一个入口快速理解我的成长和作品。",
-    action: "我从 Brief、PRD、设计到上线，完整推进并持续迭代。",
-    proof: "能把抽象定位做成稳定可打开的公开作品。",
-    proves: ["公开展示", "页面开发", "持续迭代"],
-    demoLabel: "Demo",
-    demoUrl: "#top",
-    secondaryDemoLabel: "",
-    secondaryDemoUrl: "",
-    githubUrl: "https://github.com/hou-152/personal-homepage",
-    status: "ready",
+    index: "01",
+    title: "微信群聊 AI 日报管线",
+    meta: "AI 数据管线搭建",
+    href: "#selected-primary",
   },
   {
-    title: "微信 ClawBot",
-    summary: "把微信里的真实输入接到个人 Agent 工作流。",
-    problem: "微信输入容易散掉，后续很难复用。",
-    action: "我设计入口、提醒、通道、队列和人工确认边界。",
-    proof: "能把真实场景接进自动化，同时保留判断权。",
-    proves: ["个人 Agent", "自动化链路", "边界设计"],
-    demoLabel: "Demo",
-    demoUrl: "#workbench",
-    secondaryDemoLabel: "",
-    secondaryDemoUrl: "",
-    githubUrl: "",
-    status: "ready",
+    index: "02",
+    title: "AI 信息日报与内容策展管线",
+    meta: "信息筛选与持续运营",
+    href: "#selected-neican",
   },
   {
-    title: "微信对象库 / RAG 原料层",
-    summary: "把微信群聊天记录转成可检索、可评测、可追溯的结构化对象库。",
-    problem: "高信号内容会沉在微信群里，只做日报会丢掉来源、责任、判断和后续动作。",
-    action: "我把原始消息拆成对象层，生成入库版、分享版和评测版，并保留 local_id 证据锚点。",
-    proof: "能把非结构化信息流变成 RAG 可用的知识原料，同时控制隐私和幻觉风险。",
-    proves: ["RAG 原料层", "证据链", "质量评测"],
-    demoLabel: "公开 Demo",
-    demoUrl: `${import.meta.env.BASE_URL}wechat-rag/index.html`,
-    secondaryDemoLabel: "评测摘要",
-    secondaryDemoUrl: `${import.meta.env.BASE_URL}wechat-rag/eval-summary.md`,
-    githubUrl: "https://github.com/hou-152/personal-homepage",
-    status: "ready",
+    index: "03",
+    title: "饮食配比计算器",
+    meta: "独立前端开发",
+    href: "#selected-carb",
   },
   {
-    title: "碳水蛋白质配额卡",
-    summary: "把一张难读的健身配额表变成填几项就出结果的饮食计算器。",
-    problem: "减脂增肌新手知道要控制饮食，却不知道今天该吃多少碳水和蛋白质。",
-    action: "我复原原始表格逻辑，做成 React 小工具，并做结构优化与双通道部署上线。",
-    proof: "能把复杂查表逻辑落成可反复打开、可截图的生活化工具。",
-    proves: ["逻辑复原", "前端工具", "部署上线"],
-    demoLabel: "CloudBase",
-    demoUrl: "https://fat-loss-tool-prod-0504-da3dc1df-1428481707.tcloudbaseapp.com/?v=DCWC1P-6",
-    secondaryDemoLabel: "GitHub Pages",
-    secondaryDemoUrl: "https://hou-152.github.io/carb-protein-quota-card/?v=719df8b",
-    githubUrl: "https://github.com/hou-152/carb-protein-quota-card",
-    status: "ready",
+    index: "04",
+    title: "个人作品主页",
+    meta: "独立开发与部署",
+    href: "#top",
+  },
+];
+
+/** 主位卡片的分步流程（微信群聊 AI 日报管线）。 */
+export const primaryWorkflow = [
+  "消息抓取",
+  "清洗",
+  "AI 摘要",
+  "价值筛选",
+  "日报产出",
+];
+
+/**
+ * 「精选作品」支撑位（02–04）。id 必须是页面上真实存在的锚点。
+ * 新增一条＝加一个对象；App.tsx 的支撑位区块是 map 渲染，无需改组件。
+ */
+export const supportingWorks = [
+  {
+    id: "selected-neican",
+    index: "02",
+    label: "Ongoing operation",
+    title: "AI 信息日报与内容策展管线",
+    body: "按「信息进入→人工筛选→AI 日报→校验」运营个人 AI 信息日报；在 Readwise 中对订阅源文章持续筛选与取舍，产出每日判断材料。",
+    proof: "累计处理约 9800 篇订阅源文章；2026.04 起持续发刊，延伸开发的 skill 获社群评比前 5 名",
   },
   {
-    title: "个人公众号",
-    summary: "把思考、项目和复盘沉淀成公开表达。",
-    problem: "内部成长如果不表达，别人很难看见。",
-    action: "我把学习、内参、项目复盘整理成对外内容。",
-    proof: "能把过程和判断翻译成别人愿意读的表达。",
-    proves: ["公开表达", "内容沉淀", "个人品牌"],
-    demoLabel: "Demo",
-    demoUrl: "#workbench",
-    secondaryDemoLabel: "",
-    secondaryDemoUrl: "",
-    githubUrl: "",
-    status: "building",
+    id: "selected-carb",
+    index: "03",
+    label: "Live utility",
+    title: "饮食配比计算器",
+    body: "将复杂的碳水与蛋白质配额表重构为可便捷访问、计算、截图与记录数据的前端工具；根据身体数据与训练目标动态生成每日摄入建议。",
+    proof: "CloudBase 与 GitHub Pages 双通道部署，已集成至个人作品主页",
   },
   {
-    title: "思想孵化 Agent",
-    summary: "从聊天和阅读评论里提炼可继续推进的想法。",
-    problem: "好想法常常藏在碎片信息里。",
-    action: "我建立采集、去身份化、主题包和人工拍板点。",
-    proof: "能把非标输入转成可讨论的判断资产。",
-    proves: ["隐私边界", "主题提炼", "判断资产"],
-    demoLabel: "Demo",
-    demoUrl: "#workbench",
-    secondaryDemoLabel: "",
-    secondaryDemoUrl: "",
-    githubUrl: "",
-    status: "building",
+    id: "selected-homepage",
+    index: "04",
+    label: "This site",
+    title: "个人作品主页",
+    body: "按 Brief→PRD→DESIGN→ARCHITECTURE→React 全流程开发的作品证据页，把上述项目组织成可公开查看的入口。",
+    proof: "21 版迭代后上线（hou-152.github.io），长期作为简历附件的作品集入口",
+  },
+];
+
+/**
+ * 「更多工作」索引（05+）。只放已有一句话能说清、但证据未完整成页的项目；
+ * status 如实写「进行中／实验」，不写未核实的量级。
+ */
+export const moreWorks = [
+  {
+    index: "05",
+    title: "公众号内容资产工程",
+    status: "进行中",
   },
   {
-    title: "桌面助手原型",
-    summary: "把桌面助手想法做成可体验的静态原型。",
-    problem: "只讲概念，很难判断体验是否成立。",
-    action: "我验证状态切换、问题拆解和日终复盘交互。",
-    proof: "能用低成本原型快速验证产品感觉。",
-    demoLabel: "Demo",
-    demoUrl: "#projects",
-    secondaryDemoLabel: "",
-    secondaryDemoUrl: "",
-    proves: ["原型设计", "交互体验", "本机验证"],
-    githubUrl: "",
-    status: "building",
+    index: "06",
+    title: "内容生产流水线",
+    status: "进行中",
+  },
+  {
+    index: "07",
+    title: "微信关系语料 skill",
+    status: "实验",
   },
 ];

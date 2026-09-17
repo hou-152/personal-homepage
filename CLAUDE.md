@@ -1,3 +1,1 @@
-# CLAUDE.md
-
-本项目以 [AGENTS.md](./AGENTS.md) 为准。请先读 AGENTS.md 再开始工作。
+请查看 AGENTS.md，以 AGENTS.md 为准。

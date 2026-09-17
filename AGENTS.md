@@ -86,6 +86,7 @@ npm run preview
 
 ## 当前项目状态
 
+- 2026-07-20 `v21-gpt56-work-index` 已完成 Phase 2 结构与视觉实现，等待用户验收：首页收束为 Hero、Selected Work、More Work + Build、Contact 4 段，采用暖白、近黑和橙红的编辑式工作索引；精选项目为《serious AI 内参》、本地提取微信聊天记录、碳水蛋白质配额卡和 AI 视频流水线。Vite production bundle 已通过，TypeScript 检查仍会长时间无输出；尚未进入 Phase 3 最终内容回填、提交或部署。
 - `src/data/links.ts` 中 GitHub、Gmail、电话和微信号已连接为真实联系方式。
 - GitHub 仓库：[hou-152/personal-homepage](https://github.com/hou-152/personal-homepage)
 - 线上地址：[https://hou-152.github.io/personal-homepage/](https://hou-152.github.io/personal-homepage/)

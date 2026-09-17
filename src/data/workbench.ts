@@ -2,7 +2,7 @@ export const workbenchGroups = [
   {
     name: "把输入变成可复用素材",
     summary: "把阅读、评论、日报、入库和笔记写回连成稳定流程，让信息不只停留在浏览层。",
-    projects: ["AI 内参", "个人公众号", "Readwise/Reader", "Notion 阅读库"],
+    projects: ["AI 信息日报", "个人公众号", "Readwise/Reader", "Notion 阅读库"],
     proof: "它支撑的是持续内容生产能力。",
   },
   {
@@ -19,8 +19,8 @@ export const workbenchGroups = [
   },
   {
     name: "把结果做成别人能看的作品",
-    summary: "用个人主页、公众号和轻量交互原型把想法变成可看的作品。",
-    projects: ["个人主页", "个人公众号", "桌面助手原型"],
+    summary: "用个人主页、公众号和证据 demo 把想法变成可看的作品。",
+    projects: ["个人主页", "个人公众号", "微信对象库 Demo"],
     proof: "它支撑的是公开展示和视觉交付能力。",
   },
 ];
