@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>V20 Swiss Homepage Preview</title>
+    <style>
+      :root {
+        --paper: #fafaf8;
+        --ink: #0a0a0a;
+        --grey-1: #f0f0ee;
+        --grey-2: #d4d4d2;
+        --grey-3: #737373;
+        --accent: #002fa7;
+        --accent-on: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 24px;
+        align-items: center;
+        padding: 18px 5vw;
+        border-bottom: 1px solid var(--grey-2);
+        background: rgba(250, 250, 248, 0.92);
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        display: flex;
+        min-width: 0;
+        align-items: baseline;
+        gap: 14px;
+      }
+
+      .brand strong {
+        flex: 0 0 auto;
+        font-size: 15px;
+        font-weight: 650;
+      }
+
+      .brand span,
+      .topbar nav a {
+        color: var(--grey-3);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .topbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 18px;
+      }
+
+      .hero {
+        display: grid;
+        min-height: calc(100vh - 59px);
+        grid-template-columns: repeat(16, minmax(0, 1fr));
+        gap: 16px;
+        padding: 7vh 5vw 5vh;
+        border-bottom: 1px solid var(--grey-2);
+      }
+
+      .hero-copy {
+        grid-column: 1 / 7;
+        display: flex;
+        min-height: 0;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 48px;
+      }
+
+      .kicker {
+        margin: 0 0 18px;
+        color: var(--accent);
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        max-width: 740px;
+        font-size: min(5.7vw, 10vh);
+        font-weight: 260;
+        letter-spacing: -0.05em;
+        line-height: 0.95;
+      }
+
+      h1 span {
+        color: var(--accent);
+        font-weight: 330;
+      }
+
+      .lead {
+        max-width: 600px;
+        margin-top: 30px;
+        color: #343434;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--ink);
+        padding: 0 16px;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: var(--accent-on);
+        border-color: var(--accent);
+      }
+
+      .button.secondary {
+        background: var(--paper);
+      }
+
+      .hero-canvas {
+        grid-column: 8 / 17;
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        min-height: 0;
+        border: 1px solid var(--ink);
+        background: #fff;
+      }
+
+      .canvas-chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--grey-2);
+        padding: 14px 18px;
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .canvas-tag {
+        background: var(--accent);
+        color: var(--accent-on);
+        padding: 5px 8px;
+      }
+
+      .case-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 128px;
+        gap: 16px;
+        padding: 30px;
+        border-bottom: 1px solid var(--grey-2);
+      }
+
+      .case-head h2 {
+        max-width: 740px;
+        font-size: min(3.9vw, 7vh);
+        font-weight: 260;
+        letter-spacing: -0.045em;
+        line-height: 0.95;
+      }
+
+      .case-meta {
+        display: grid;
+        align-content: start;
+        gap: 8px;
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 11px;
+        color: var(--grey-3);
+      }
+
+      .case-meta strong {
+        display: block;
+        color: var(--ink);
+        font-size: 34px;
+        font-weight: 300;
+        letter-spacing: -0.04em;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0;
+        padding: 0 30px;
+      }
+
+      .step {
+        min-height: 132px;
+        border-right: 1px solid var(--grey-2);
+        padding: 20px 14px;
+      }
+
+      .step:first-child {
+        border-left: 1px solid var(--grey-2);
+      }
+
+      .step strong {
+        display: block;
+        margin-bottom: 16px;
+        color: var(--accent);
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 12px;
+      }
+
+      .step span {
+        display: block;
+        font-size: 15px;
+        font-weight: 620;
+        line-height: 1.35;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 16px;
+        padding: 30px;
+      }
+
+      .proof-block {
+        min-height: 190px;
+        padding: 22px;
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .proof-block h3,
+      .evidence-card h3 {
+        font-size: 24px;
+        font-weight: 420;
+        letter-spacing: -0.02em;
+      }
+
+      .proof-block p,
+      .evidence-card p {
+        margin-top: 18px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .proof-block ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .proof-block li {
+        border-top: 1px solid rgba(255, 255, 255, 0.26);
+        padding-top: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .stats {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stat {
+        border: 1px solid var(--grey-2);
+        padding: 18px;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--accent);
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 30px;
+        font-weight: 400;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 4px;
+        color: var(--grey-3);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .section {
+        padding: 8vh 5vw;
+        border-bottom: 1px solid var(--grey-2);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: repeat(16, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+
+      .section-head div {
+        grid-column: 1 / 9;
+      }
+
+      .section-head h2 {
+        font-size: min(5.4vw, 9vh);
+        font-weight: 240;
+        letter-spacing: -0.05em;
+        line-height: 0.95;
+      }
+
+      .section-head p {
+        grid-column: 10 / 17;
+        align-self: end;
+        color: var(--grey-3);
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .evidence-wall {
+        display: grid;
+        grid-template-columns: repeat(16, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .evidence-card {
+        border: 1px solid var(--ink);
+        padding: 26px;
+        background: #fff;
+      }
+
+      .evidence-card.primary {
+        grid-column: 1 / 9;
+        background: var(--accent);
+        color: var(--accent-on);
+        border-color: var(--accent);
+      }
+
+      .evidence-card.secondary-a {
+        grid-column: 9 / 13;
+      }
+
+      .evidence-card.secondary-b {
+        grid-column: 13 / 17;
+      }
+
+      .evidence-card:not(.primary) p {
+        color: var(--grey-3);
+      }
+
+      .evidence-card .label {
+        display: inline-block;
+        margin-bottom: 56px;
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .evidence-card.primary .label {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .evidence-card .mini-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .mini-list span {
+        border-top: 1px solid currentColor;
+        padding-top: 8px;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .resume-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border: 1px solid var(--ink);
+      }
+
+      .resume-strip > div {
+        min-height: 180px;
+        border-right: 1px solid var(--ink);
+        padding: 20px;
+      }
+
+      .resume-strip > div:last-child {
+        border-right: 0;
+      }
+
+      .resume-strip strong {
+        display: block;
+        font-size: 17px;
+        line-height: 1.3;
+      }
+
+      .resume-strip p {
+        margin-top: 18px;
+        color: var(--grey-3);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(16, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .contact h2 {
+        grid-column: 1 / 10;
+        font-size: min(5.8vw, 9.6vh);
+        font-weight: 240;
+        letter-spacing: -0.05em;
+        line-height: 0.95;
+      }
+
+      .contact-links {
+        grid-column: 11 / 17;
+        display: grid;
+        gap: 8px;
+        align-content: end;
+      }
+
+      .contact-links a,
+      .contact-links span {
+        border-bottom: 1px solid var(--grey-2);
+        padding: 12px 0;
+        color: var(--grey-3);
+        font-size: 15px;
+      }
+
+      @media (max-width: 900px) {
+        .topbar,
+        .hero,
+        .section-head,
+        .evidence-wall,
+        .contact {
+          display: block;
+        }
+
+        .topbar nav {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 44px;
+          padding-right: 24px;
+          padding-left: 24px;
+        }
+
+        .hero-copy,
+        .hero-canvas {
+          grid-column: auto;
+          min-width: 0;
+        }
+
+        h1 {
+          max-width: calc(100vw - 48px);
+          font-size: 34px;
+          letter-spacing: -0.03em;
+          line-height: 1.08;
+          word-break: break-all;
+        }
+
+        .lead {
+          font-size: 18px;
+        }
+
+        .brand {
+          overflow: hidden;
+        }
+
+        .brand span {
+          min-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .kicker {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+          word-break: break-all;
+          font-size: 11px;
+          line-height: 1.4;
+        }
+
+        .hero-actions {
+          margin: 34px 0;
+        }
+
+        .hero-canvas {
+          width: calc(100vw - 48px);
+          margin-top: 28px;
+          overflow: hidden;
+        }
+
+        .case-head,
+        .proof-grid,
+        .workflow,
+        .resume-strip {
+          display: block;
+        }
+
+        .case-head h2,
+        .section-head h2,
+        .contact h2 {
+          max-width: calc(100vw - 96px);
+          font-size: 30px;
+          letter-spacing: -0.03em;
+          line-height: 1.08;
+          word-break: break-all;
+        }
+
+        .section {
+          padding-right: 24px;
+          padding-left: 24px;
+        }
+
+        .case-meta,
+        .stats,
+        .section-head p,
+        .contact-links {
+          margin-top: 24px;
+        }
+
+        .step,
+        .step:first-child {
+          min-height: 0;
+          border: 0;
+          border-top: 1px solid var(--grey-2);
+          padding: 16px 0;
+        }
+
+        .proof-grid {
+          padding: 24px;
+        }
+
+        .proof-block ul {
+          grid-template-columns: 1fr;
+        }
+
+        .evidence-card {
+          margin-bottom: 14px;
+        }
+
+        .evidence-card .label {
+          margin-bottom: 28px;
+        }
+
+        .resume-strip > div {
+          border-right: 0;
+          border-bottom: 1px solid var(--ink);
+        }
+
+        .resume-strip > div:last-child {
+          border-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="#">
+          <strong>侯斯博 / Da Capo</strong>
+          <span>AI Agent Intern Portfolio · V20 Draft</span>
+        </a>
+        <nav>
+          <a href="#featured">代表作品</a>
+          <a href="#evidence">证据墙</a>
+          <a href="#resume">简历同步</a>
+          <a href="#contact">联系</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <div>
+              <p class="kicker">AI Product / Agent Workflow / Evidence System</p>
+              <h1>AI 信息流<br /><span>Agent 工作流</span><br />作品。</h1>
+              <p class="lead">
+                面向 AI Agent / AI 产品经理实习岗位，我用真实信息流、对象库、工作台 Demo 和构建记录证明：
+                我能把模糊问题拆成产品流程，并推进成可打开的作品。
+              </p>
+            </div>
+            <div class="hero-actions">
+              <a class="button primary" href="#featured">看代表作品</a>
+              <a class="button secondary" href="#resume">看简历版本</a>
+            </div>
+          </div>
+
+          <div class="hero-canvas" id="featured">
+            <div class="canvas-chrome">
+              <span>FEATURED WORK / 01</span>
+              <span class="canvas-tag">READY</span>
+            </div>
+            <div class="case-head">
+              <div>
+                <p class="kicker">serious AI neican</p>
+                <h2>不是 AI 新闻页，<br />是判断材料系统。</h2>
+              </div>
+              <div class="case-meta">
+                <span><strong>3775</strong>articles</span>
+                <span><strong>6</strong>workflow steps</span>
+              </div>
+            </div>
+            <div class="workflow">
+              <div class="step"><strong>01</strong><span>信息进入 Reader / RSS</span></div>
+              <div class="step"><strong>02</strong><span>人工筛选关键材料</span></div>
+              <div class="step"><strong>03</strong><span>Agent 整理日报</span></div>
+              <div class="step"><strong>04</strong><span>评论与线索入库</span></div>
+              <div class="step"><strong>05</strong><span>三级笔记 / 概念网络</span></div>
+              <div class="step"><strong>06</strong><span>沉淀为行动判断</span></div>
+            </div>
+            <div class="proof-grid">
+              <div class="proof-block">
+                <h3>Proof, not self-description.</h3>
+                <p>
+                  用 README、Agent Instructions、屏录、Notion / Reader 工作台和个人主页 case 页证明交付过程。
+                </p>
+                <ul>
+                  <li>workflow README</li>
+                  <li>agent instructions</li>
+                  <li>10s recording</li>
+                  <li>case page</li>
+                </ul>
+              </div>
+              <div class="stats">
+                <div class="stat"><strong>AI</strong><span>归类 / 摘要 / 初稿 / 格式化</span></div>
+                <div class="stat"><strong>Human</strong><span>筛选 / 判断 / 取舍 / 验收</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="evidence">
+          <div class="section-head">
+            <div>
+              <p class="kicker">Representative Works</p>
+              <h2>三个案例，证明同一件事。</h2>
+            </div>
+            <p>
+              我不只会使用 AI 工具，而是在训练一种产品能力：把真实输入变成结构化数据、可执行流程、可点击 Demo 和可追溯证据。
+            </p>
+          </div>
+          <div class="evidence-wall">
+            <article class="evidence-card primary">
+              <span class="label">Primary Case</span>
+              <h3>《serious AI 内参》Agent 信息流系统</h3>
+              <p>把阅读材料、RSS、人工筛选、Agent 日报、Notion 排版和校验 JSON 串成一条可复盘的信息流。</p>
+              <div class="mini-list">
+                <span>信息过载 -> 判断材料</span>
+                <span>AI 生成与人工判断分离</span>
+                <span>可迁移到管理层日报 / 行业情报</span>
+              </div>
+            </article>
+            <article class="evidence-card secondary-a">
+              <span class="label">Data Layer</span>
+              <h3>微信对象库 / RAG 原料层</h3>
+              <p>把 45,908 条源聊天消息提炼成 1,528 条精华块，并生成 69 个 HTML 报告。</p>
+              <div class="mini-list">
+                <span>69 HTML reports</span>
+                <span>45,908 source messages</span>
+                <span>1,528 essence blocks</span>
+              </div>
+            </article>
+            <article class="evidence-card secondary-b">
+              <span class="label">Portfolio System</span>
+              <h3>个人主页 / AI 作品证据系统</h3>
+              <p>把 Brief、PRD、设计、开发、部署和 Build Log 组织成公开可访问的作品页。</p>
+              <div class="mini-list">
+                <span>SpecDrivenCoding</span>
+                <span>GitHub Pages</span>
+                <span>持续构建记录</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="resume">
+          <div class="section-head">
+            <div>
+              <p class="kicker">Resume Sync</p>
+              <h2>简历里的代表作品也应该这样讲。</h2>
+            </div>
+            <p>不是堆技术词，而是按产品经理能读懂的逻辑：问题是什么、我做了什么、留下了什么证据、能迁移到什么场景。</p>
+          </div>
+          <div class="resume-strip">
+            <div>
+              <strong>Problem</strong>
+              <p>AI 信息太多，普通摘要不能支持判断和行动。</p>
+            </div>
+            <div>
+              <strong>Action</strong>
+              <p>设计信息进入、人工筛选、Agent 加工、校验和沉淀流程。</p>
+            </div>
+            <div>
+              <strong>Evidence</strong>
+              <p>README、Instructions、JSON、Demo、case page、GitHub。</p>
+            </div>
+            <div>
+              <strong>Transfer</strong>
+              <p>企业情报日报、客户群复盘、RAG 原料层、项目证据页。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section contact" id="contact">
+          <h2>Ready for review. 先看作品，再谈机会。</h2>
+          <div class="contact-links">
+            <a href="https://github.com/hou-152/personal-homepage">GitHub / personal-homepage</a>
+            <a href="https://hou-152.github.io/personal-homepage/">Online homepage</a>
+            <span>sibohou792@gmail.com</span>
+            <span>WeChat: sibozsibo</span>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

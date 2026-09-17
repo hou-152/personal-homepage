@@ -63,7 +63,7 @@ export const buildLog = [
     date: "2026-05-31",
     type: "update",
     title: "整理 Codex 项目体系",
-    description: "把个人主页、个人公众号、微信 ClawBot、AI 内参和思想孵化翻译成公开可读证据。",
+    description: "把个人主页、个人公众号、微信 ClawBot、AI 信息日报和思想孵化翻译成公开可读证据。",
   },
   {
     date: "2026-05-31",
@@ -86,20 +86,20 @@ export const buildLog = [
   {
     date: "2026-06-01",
     type: "code",
-    title: "新增 AI 内参信息流 Demo",
+    title: "新增 AI 信息日报信息流 Demo",
     description: "用可播放的六步演示展示从 AI 信息接入到判断和行动的真实流程。",
   },
   {
     date: "2026-06-01",
     type: "code",
-    title: "新增 AI 内参证据页",
+    title: "新增 AI 信息日报证据页",
     description: "把 Feed、阅读库、日报、笔记、概念和判断简报整理成独立站内证据页。",
   },
   {
     date: "2026-06-01",
     type: "update",
     title: "重写首页品牌入口",
-    description: "把门牌从 SpecDriven 调整为侯斯博 / Da Capo，并将首屏聚焦到 AI 内参 Demo。",
+    description: "把门牌从 SpecDriven 调整为侯斯博，并将首屏聚焦到 AI 信息日报 Demo。",
   },
   {
     date: "2026-06-01",
@@ -110,26 +110,26 @@ export const buildLog = [
   {
     date: "2026-06-01",
     type: "update",
-    title: "接入碳水蛋白质配额卡",
+    title: "接入饮食配比计算器",
     description: "把已上线的减脂饮食计算器加入项目证据，并连接 GitHub Pages Demo 和源码仓库。",
   },
   {
     date: "2026-06-01",
     type: "update",
-    title: "去重 AI 内参项目表达",
-    description: "将《serious AI 内参》保留为重点案例，把信息流 Demo 作为它的展示方式，不再重复成普通项目卡片。",
+    title: "去重 AI 信息日报项目表达",
+    description: "将《AI 信息日报》保留为重点案例，把信息流 Demo 作为它的展示方式，不再重复成普通项目卡片。",
   },
   {
     date: "2026-06-01",
     type: "update",
     title: "重构首页代表作品入口",
-    description: "将顶栏压缩为五个入口，接入 Da Capo 头像，并把首屏右侧改为《serious AI 内参》代表作品预览。",
+    description: "将顶栏压缩为五个入口，接入本人头像，并把首屏右侧改为《AI 信息日报》代表作品预览。",
   },
   {
     date: "2026-06-02",
     type: "update",
     title: "启动 V11 首屏版本化",
-    description: "在顶部显示 V11 和迭代次数，重排首屏左右栏，让左栏讲人，右栏讲《serious AI 内参》的判断系统。",
+    description: "在顶部显示 V11 和迭代次数，重排首屏左右栏，让左栏讲人，右栏讲《AI 信息日报》的判断系统。",
   },
   {
     date: "2026-06-02",
@@ -147,7 +147,7 @@ export const buildLog = [
     date: "2026-06-02",
     type: "update",
     title: "启动 V14 身份区与线上链接修整",
-    description: "把 Identity 从仪表盘改成人物介绍，并把碳水蛋白质配额卡接入 CloudBase 和 GitHub Pages 双线上入口。",
+    description: "把 Identity 从仪表盘改成人物介绍，并把饮食配比计算器接入 CloudBase 和 GitHub Pages 双线上入口。",
   },
   {
     date: "2026-06-02",

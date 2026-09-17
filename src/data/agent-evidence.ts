@@ -1,22 +1,16 @@
-export const agentEvidenceLinks = {
-  readme: "https://howieserious.notion.site/README-md-2ec679b108ff83d9b05901e0811ddb15",
-  instructions:
-    "https://howieserious.notion.site/agent-instructions-646679b108ff8230a08801187b036445",
-};
-
 export const agentEvidence = [
   {
     requirement: "工作流设计",
-    evidence: "《serious AI 内参》从信息输入到判断材料的六步链路",
-    linkLabel: "工作流 README",
-    href: agentEvidenceLinks.readme,
+    evidence: "AI 信息日报从信息输入到判断材料的六步链路",
+    linkLabel: "六步链路",
+    href: "#/ai-neican-case",
     status: "ready",
   },
   {
     requirement: "Agent 指令设计",
-    evidence: "内参编辑 agent 的触发规则、skill 分工、Readwise MCP 约束",
-    linkLabel: "Agent Instructions",
-    href: agentEvidenceLinks.instructions,
+    evidence: "日报编辑 agent 的触发规则、skill 分工、Readwise MCP 约束",
+    linkLabel: "Agent 指令设计",
+    href: "#/ai-neican-case",
     status: "ready",
   },
   {

@@ -1,15 +1,15 @@
 export const profile = {
   name: "侯斯博的个人主页",
-  brand: "侯斯博 / Da Capo",
+  brand: "侯斯博",
   brandMark: "DC",
-  siteVersion: "V20",
-  versionLabel: "20 次迭代",
+  siteVersion: "V21",
+  versionLabel: "21 次迭代",
   avatar: `${import.meta.env.BASE_URL}avatar-dacapo.jpg`,
   eyebrow: "Personal Homepage",
-  headline: "侯斯博 / Da Capo",
-  headlineLines: ["侯斯博 /", "Da Capo"],
+  headline: "侯斯博",
+  headlineLines: ["侯斯博"],
   subtitle:
     "我用真实信息流、对象库、工作台 Demo 和构建记录，把模糊问题拆成产品流程，并推进成可打开的作品。",
-  heroNote: "Da Capo 提醒我：复杂问题先回到原点，再重新推进。",
+  heroNote: "复杂问题先回到原点，再重新推进。",
   workStatement: "我正在把 AI 信息压力，做成可复盘、可交付、可行动的判断系统。",
 };

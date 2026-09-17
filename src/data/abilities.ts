@@ -12,12 +12,12 @@ export const abilities = [
   {
     name: "个人 Agent 设计",
     description: "把微信、阅读、提醒和知识库连接成能长期复利的个人工作流。",
-    evidence: ["微信 ClawBot", "思想孵化 Agent", "AI 内参"],
+    evidence: ["微信 ClawBot", "思想孵化 Agent", "AI 信息日报"],
   },
   {
     name: "内容生产流程",
     description: "把阅读、评论、入库、笔记和概念提取组织成稳定的内容生产链路。",
-    evidence: ["AI 内参", "个人公众号", "关系回填"],
+    evidence: ["AI 信息日报", "个人公众号", "关系回填"],
   },
   {
     name: "原型与视觉交付",

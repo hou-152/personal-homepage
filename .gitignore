@@ -5,3 +5,9 @@ dist/
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+# 临时预览目录与本地产物（2026-09-17 加：避免误入库）
+tmp-v16-preview/
+tmp-v17-preview/
+tmp-v20-react-preview/
+output/
